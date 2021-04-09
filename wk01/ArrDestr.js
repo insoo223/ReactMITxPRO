@@ -1,6 +1,5 @@
 // Section 1: Array Destructuring
 
-
 const books = ["fiction", ["horror", "literary"], "science"];
 //let [fiction, horror, literary, science] =  ["fiction", ["horror", "literary"], "science"];
 // TODO: Use destructuring to create the variables fiction horror literary and science
