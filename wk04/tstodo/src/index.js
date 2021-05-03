@@ -1,5 +1,5 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 function App(){
   const [todos, setTodos] = React.useState([
@@ -19,9 +19,10 @@ function App(){
 
   return(
     <>
-      {todos.map((todo, i) => <div key={i}>{todo.text}</div>)}
-    </>
-  );
+      {todos.map((todo, i) => (
+        <div className="todo" key={i}>{todo.text}</div>
+      ))}
+    </>)
 }
 
 ReactDOM.render(
