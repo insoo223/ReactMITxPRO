@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import {TodoForm} from './form'
 
 function App(){
   const [todos, setTodos] = React.useState([
@@ -15,17 +16,12 @@ function App(){
       text: 'build todo app',
       isCompleted: false,
     }        
-  ]);//const
+  ]);//const [todos, setTodos]
 
-  const [value, setValue] = React.useState('');
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (!value) return;
-    const newTodos = [...todos, {text:value, isCompleted:false}];
+  const addTodo = text => {
+    const newTodos = [...todos, {text:text, isCompleted:false}];
     setTodos(newTodos);
-    setValue('');
-  }//const handleSubmit
+  }
 
   const removeTodo = e => {
     var index = Number(e.target.id);
@@ -37,18 +33,9 @@ function App(){
   return(
     <>
       {todos.map((todo, i) => 
-        <div className="todo" key={i} id={i} onClick={removeTodo}>{todo.text}</div>)}
-
-      <form onSubmit={handleSubmit}>
-        <input
-            type="text" 
-            className="input" 
-            value = {value}
-            placeholder="Add Todo..."
-            onChange={e => setValue(e.target.value)}>
-        </input>
-      </form>
-      
+        <div className="todo" key={i} id={i} onClick={removeTodo}>{todo.text}</div>
+      )}
+      <TodoForm addTodo={addTodo}/>
     </>
   );//return
 };//App
