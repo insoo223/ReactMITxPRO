@@ -1,10 +1,15 @@
 # To-Do application with Create React App
 
-This project is to create a to-do list management app which is syilish and easy to maintain. The repository has been evolved from whimsical way to refactored neat code structure.
+This project is to create a to-do list management app which is syilish and easy to maintain. The repository has been evolved from whimsical tinkering to refactored neat code structure following the online class of MIT xPRO Front-End Development with React.
 
-## Available Scripts
+## Source code file structure
+The code templates are built automatically by using create-react-app toolchain. The original boiler plate codes can be removed away and you need put the follwing codes at the corresponding folders.
 
-In the project directory, you can run:
+public/index.html
+public/styles.css
+src/index.js
+src/form.js
+src/todo.js
 
 ### `npm start`
 
