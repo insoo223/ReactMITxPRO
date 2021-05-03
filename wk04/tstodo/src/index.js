@@ -6,15 +6,15 @@ import {Todo} from './todo'
 function App(){
   const [todos, setTodos] = React.useState([
     {
-      text: 'learn react',
+      text: 'Learn react(리액트 학습)',
       isCompleted: false,
     },
     {
-      text: 'meet friend for lunch',
+      text: 'Meet friend for lunch(친구와 점심)',
       isCompleted: false,
     },
     {
-      text: 'build todo app',
+      text: 'Build todo app(할일 앱 작성)',
       isCompleted: false,
     }        
   ]);//const [todos, setTodos]
@@ -31,7 +31,7 @@ function App(){
   }//const removeTodo
 
   return(
-    <div className="app">
+    <div className="app2">
       <div className="todo-list">
         {todos.map((todo, i) => 
           <Todo key={i} index={i} todo={todo} remove={removeTodo}/>)}

@@ -18,11 +18,17 @@ code {
   height: 100vh;
 }
 
+.app2 {
+  background: rgba(73, 238, 32, 0.157);
+  padding: 30px;
+  height: 100vh;
+}
+
 .todo-list{
   background: #e8e8e8;
   border-radius: 4px;
   padding: 5px;
-  max-width: 400px;
+  max-width: 600px;
 }
 
 .todo{
