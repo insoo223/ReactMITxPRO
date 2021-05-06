@@ -1,13 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-function App(){
-  /*** initial to-do list ***
+//React function name must begin with capital letter.
+function ListApp(){
+  /*** Initialize to-do list ***
   useState React Hook creates and returns two parameters.
   1.State array variable "todos" for initial to-do list. 
     Each to-do list is an object (a composite value) of text and isCompleted.
     About JS object see p129, JavaScript: The definitie guide, 7th ed.
   2.Set function "setTodos" ***/
+
   const [todos, setTodos] = React.useState([
     {
       text: 'learn react',
@@ -23,8 +25,20 @@ function App(){
     }        
   ]);//const [todos, setTodos]
 
+  /*** Initialize input field ***
+  useState React Hook creates and returns two parameters.
+  1.State array variable "value" to contain input text.
+  2.Set function or manipulator "setValue" ***/
+
   const [value, setValue] = React.useState('');
 
+  /*** Function declaration to submit input form ***
+  1.Prevent default action of submit (i.e. send input field to shme where): e.preventDefault();
+  2.None is filled then exit the function: if (!value) return; 
+  3.Append the input text(text is "value" state and it's not yet completed) to the to-do list "todos": const newTodos = [...todos, {text:value, isCompleted:false}];
+  4.Update the "todos" state array variable: setTodos(newTodos);
+  5.Re-initialize the value state variable: setValue(''); ***/
+  
   const handleSubmit = e => {
     e.preventDefault();
     if (!value) return;
@@ -50,8 +64,9 @@ function App(){
   2.The form has input field which 
     A.is text type: type="text"  
     B.is styled by "input" class defined in CSS style sheet: className="input"
-    C.has value taken from the state variable "value" assigned by useState React Hook
-  ***/
+    C.has value taken from the state variable "value" created by useState React Hook
+    D.has default string: placeholder="Add Todo..."
+    E.has onChange event handler updating the "value" state by calling "setValue" state manipulator: onChange={e => setValue(e.target.value)} ***/
   <>
       {todos.map((todo, i) => 
         <div className="todo" key={i}>{todo.text}</div>)}
@@ -70,4 +85,4 @@ function App(){
   );//return
 };//App
 
-ReactDOM.render(<App/>,document.getElementById('root'));
+ReactDOM.render(<ListApp/>,document.getElementById('root'));
