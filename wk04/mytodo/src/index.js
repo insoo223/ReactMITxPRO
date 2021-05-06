@@ -47,7 +47,20 @@ function ListApp(){
     setValue('');
   }//const handleSubmit
 
-  return(
+  /*** Function declaration to remove clicked to-do item ***
+  1.Get the id or index of clicked item: var index = Number(e.target.id);
+  2.Spread "todos" state array variable and save to "temp": let temp = [...todos]; 
+    To manipulate array element, we need to SPREAD an array otherwise JS deals array as a whole entity.
+  3.Remove element whose index is "index" from "temp": temp.splice(index, 1);
+  4.Update the "todos" state array variable: setTodos(temp); ***/
+
+  const removeTodo = e => {
+    var index = Number(e.target.id);
+    let temp = [...todos];
+    temp.splice(index, 1);
+    setTodos(temp);
+  }//const removeTodo
+
   /*** Display to-do list ***
    
       {todos.map((todo, i) => 
@@ -56,8 +69,11 @@ function ListApp(){
   1.Each element of the state array variable "todos"-which contains initial to-do list assigned by useState React Hook- creates HTML list by creating <div> </div> tag.
   2.Each item of the list 
     A.is styled by "todo" class defined in CSS style sheet: className="todo"
-    B.has index taken from the array index of "totos": key={i}
-    C.has to-do string taken from the "text" part of "todo". "todo" is "todos" array's element: {todo.text}
+    B.has display item index taken from the array index of "totos": key={i}
+    C.has clicked item index taken from the array index of "totos": id={i}
+        If you omit id={i} and use key for removeTodo function, it does not work correctly. The list items order is not recognized, only the top-most item will be removed by each click.
+    D.has onClick event function: onClick={removeTodo}
+    E.has to-do string taken from the "text" part of "todo". "todo" is "todos" array's element: {todo.text}
   
   *** Input box for adding to-do list ***
   1.Execute the handleSubmit function when a form is submitted
@@ -67,10 +83,11 @@ function ListApp(){
     C.has value taken from the state variable "value" created by useState React Hook
     D.has default string: placeholder="Add Todo..."
     E.has onChange event handler updating the "value" state by calling "setValue" state manipulator: onChange={e => setValue(e.target.value)} ***/
-  <>
+  return(
+      <>
       {todos.map((todo, i) => 
-        <div className="todo" key={i}>{todo.text}</div>)}
-
+        <div className="todo" key={i} id={i} onClick={removeTodo}>{todo.text}</div>)}
+      
       <form onSubmit={handleSubmit}>
         <input
             type="text" 
@@ -83,6 +100,6 @@ function ListApp(){
       
     </>
   );//return
-};//App
+};//ListApp
 
 ReactDOM.render(<ListApp/>,document.getElementById('root'));
