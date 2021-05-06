@@ -58,6 +58,11 @@ function ListApp(){
     setTodos(temp);
   }//const removeTodo
 
+  /*** More Styles for whole app and each item of list
+   <div className="app">  ... </div>
+      <div className="todo-list">  ... </div>
+    "app" & "todo-list" are defined at CSS file. ***/
+    
   /*** Display and Remove to-do list ***
    
       {todos.map((todo, i) => 
@@ -71,13 +76,18 @@ function ListApp(){
     D.The clk2removeFunc parameter: clk2removeFunc={removeTodo} ***/
   
   /*** Add to-do list by input field  ***
+    <TodoAddForm clickAddTodo={addTodo}/>
   1.Call TodoForm function whose clickAddTodo parameter is addTodo function ***/
   return(
       <>
-      {todos.map((todo, i) => 
-        <TodoDispAndRemove key={i} todoItemID={i} todoItem={todo} clk2removeFunc={removeTodo}/>)}
+      <div className="app"> 
+        <div className="todo-list">
+          {todos.map((todo, i) => 
+            <TodoDispAndRemove key={i} todoItemID={i} todoItem={todo} clk2removeFunc={removeTodo}/>)}
 
-      <TodoAddForm clickAddTodo={addTodo}/>
+          <TodoAddForm clickAddTodo={addTodo}/>
+        </div>
+      </div>
     </>
   );//return
 };//ListApp
