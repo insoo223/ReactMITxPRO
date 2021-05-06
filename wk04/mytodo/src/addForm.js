@@ -1,6 +1,6 @@
 import React from 'react'
   
-export function TodoForm({clickAddTodo}){
+export function TodoAddForm({clickAddTodo}){
   const [value,setValue] = React.useState('');
   
   /*** Function declaration to submit input form ***
@@ -35,4 +35,4 @@ export function TodoForm({clickAddTodo}){
         onChange={e => setValue(e.target.value)} />
     </form>
   )//return
-}//export function TodoForm
+}//export function TodoAddForm

@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {TodoForm} from './form' // import user-defined function
+import {TodoAddForm} from './addForm' // import user-defined function
+import {TodoDispAndRemove} from './dispAndRemove' // import user-defined function
 
 //React function name must begin with capital letter.
 function ListApp(){
@@ -44,41 +45,39 @@ function ListApp(){
   }//const addTodo
 
   /*** Function declaration to remove clicked to-do item ***
-  1.Get the id or index of clicked item: var index = Number(e.target.id);
+  1.Get the index of clicked item: insooKey
+    The index seems to be known automatically when dealing with Array map() function in JS.
   2.Spread "todos" state array variable and save to "temp": let temp = [...todos]; 
     To manipulate array element, we need to SPREAD an array otherwise JS deals array as a whole entity.
   3.Remove element whose index is "index" from "temp": temp.splice(index, 1);
   4.Update the "todos" state array variable: setTodos(temp); ***/
 
-  const removeTodo = e => {
-    var index = Number(e.target.id);
+  const removeTodo = insooKey => {
     let temp = [...todos];
-    temp.splice(index, 1);
+    temp.splice(insooKey, 1);
     setTodos(temp);
   }//const removeTodo
 
-  /*** Display to-do list ***
+  /*** Display and Remove to-do list ***
    
       {todos.map((todo, i) => 
-        <div className="todo" key={i}>{todo.text}</div>)}
+        <TodoShowAndClick key={i} todoItemID={i} todoItem={todo} clk2removeFunc={removeTodo}/>)}
 
-  1.Each element of the state array variable "todos"-which contains initial to-do list assigned by useState React Hook- creates HTML list by creating <div> </div> tag.
-  2.Each item of the list 
-    A.is styled by "todo" class defined in CSS style sheet: className="todo"
-    B.has display item index taken from the array index of "totos": key={i}
-    C.has clicked item index taken from the array index of "totos": id={i}
-        If you omit id={i} and use key for removeTodo function, it does not work correctly. The list items order is not recognized, only the top-most item will be removed by each click.
-    D.has onClick event function: onClick={removeTodo}
-    E.has to-do string taken from the "text" part of "todo". "todo" is "todos" array's element: {todo.text} ***/
+  1.Each element of the state array variable "todos"-which contains initial to-do list assigned by useState React Hook- call TodoShowAndClick React component (function) to creates HTML list.
+  2.Following attributes are accessible to TodoShowAndClick component
+    A.The display item index taken from the array index of "totos": key={i}
+    B.The clicked item index taken from the array index of "totos": todoItemID={i}
+    C.The to-do item: todoItem={todo}
+    D.The clk2removeFunc parameter: clk2removeFunc={removeTodo} ***/
   
   /*** Add to-do list by input field  ***
   1.Call TodoForm function whose clickAddTodo parameter is addTodo function ***/
   return(
       <>
       {todos.map((todo, i) => 
-        <div className="todo" key={i} id={i} onClick={removeTodo}>{todo.text}</div>)}
+        <TodoDispAndRemove key={i} todoItemID={i} todoItem={todo} clk2removeFunc={removeTodo}/>)}
 
-      <TodoForm clickAddTodo={addTodo}/>
+      <TodoAddForm clickAddTodo={addTodo}/>
     </>
   );//return
 };//ListApp
