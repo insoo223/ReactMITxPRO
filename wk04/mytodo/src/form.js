@@ -6,9 +6,8 @@ export function TodoForm({clickAddTodo}){
   /*** Function declaration to submit input form ***
   1.Prevent default action of submit (i.e. send input field to shme where): e.preventDefault();
   2.None is filled then exit the function: if (!value) return; 
-  3.Append the input text(text is "value" state and it's not yet completed) to the to-do list "todos": const newTodos = [...todos, {text:value, isCompleted:false}];
-  4.Update the "todos" state array variable: setTodos(newTodos);
-  5.Re-initialize the value state variable: setValue(''); ***/
+  3.Call clickAddTodo function to append the input text of "value" state": clickAddTodo(value);
+  4.Re-initialize the value state variable: setValue(''); ***/
   
   const handleSubmit = e => {
     e.preventDefault();
