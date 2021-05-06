@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import {TodoForm} from './form' // import user-defined function
 
 //React function name must begin with capital letter.
 function ListApp(){
@@ -32,20 +33,15 @@ function ListApp(){
 
   const [value, setValue] = React.useState('');
 
-  /*** Function declaration to submit input form ***
-  1.Prevent default action of submit (i.e. send input field to shme where): e.preventDefault();
-  2.None is filled then exit the function: if (!value) return; 
-  3.Append the input text(text is "value" state and it's not yet completed) to the to-do list "todos": const newTodos = [...todos, {text:value, isCompleted:false}];
-  4.Update the "todos" state array variable: setTodos(newTodos);
-  5.Re-initialize the value state variable: setValue(''); ***/
-  
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (!value) return;
-    const newTodos = [...todos, {text:value, isCompleted:false}];
+  /*** Function declaration to add To-Do item ***
+  1.Get the text of to-be-added item for to-do list: todoText
+  2.Append the input text(text is "todoText" parameter and it's not yet completed) to the to-do list "todos": const newTodos = [...todos, {text:todoText, isCompleted:false}];
+  3.Update the "todos" state array variable: setTodos(newTodos); ***/
+
+  const addTodo = todoText => {
+    const newTodos = [...todos, {text:todoText, isCompleted:false}];
     setTodos(newTodos);
-    setValue('');
-  }//const handleSubmit
+  }//const addTodo
 
   /*** Function declaration to remove clicked to-do item ***
   1.Get the id or index of clicked item: var index = Number(e.target.id);
@@ -73,31 +69,16 @@ function ListApp(){
     C.has clicked item index taken from the array index of "totos": id={i}
         If you omit id={i} and use key for removeTodo function, it does not work correctly. The list items order is not recognized, only the top-most item will be removed by each click.
     D.has onClick event function: onClick={removeTodo}
-    E.has to-do string taken from the "text" part of "todo". "todo" is "todos" array's element: {todo.text}
+    E.has to-do string taken from the "text" part of "todo". "todo" is "todos" array's element: {todo.text} ***/
   
-  *** Input box for adding to-do list ***
-  1.Execute the handleSubmit function when a form is submitted
-  2.The form has input field which 
-    A.is text type: type="text"  
-    B.is styled by "input" class defined in CSS style sheet: className="input"
-    C.has value taken from the state variable "value" created by useState React Hook
-    D.has default string: placeholder="Add Todo..."
-    E.has onChange event handler updating the "value" state by calling "setValue" state manipulator: onChange={e => setValue(e.target.value)} ***/
+  /*** Add to-do list by input field  ***
+  1.Call TodoForm function whose clickAddTodo parameter is addTodo function ***/
   return(
       <>
       {todos.map((todo, i) => 
         <div className="todo" key={i} id={i} onClick={removeTodo}>{todo.text}</div>)}
-      
-      <form onSubmit={handleSubmit}>
-        <input
-            type="text" 
-            className="input" 
-            value = {value}
-            placeholder="Add Todo..."
-            onChange={e => setValue(e.target.value)}>
-        </input>
-      </form>
-      
+
+      <TodoForm clickAddTodo={addTodo}/>
     </>
   );//return
 };//ListApp
