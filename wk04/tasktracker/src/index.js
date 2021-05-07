@@ -1,6 +1,9 @@
 /*
 You to not need to change this planner.jsx file. This task only requires changes to the index.html file and the styles.css file.
+(May 7, 2021) Insoo renamed this file as of index.js and put it at src folder.
 */
+import React from 'react'
+import ReactDOM from 'react-dom'
 
 function App() {
   const addEvent = (text, dateLocalStr) => {
@@ -69,7 +72,9 @@ function App() {
           key={i}
           title="click to remove item"
           className="planner-item"
-          onClick={(i) => removeEvent(i)}
+          //onClick={(i) => removeEvent(i)}
+          onClick={(index) => removeEvent(index)}
+          //onClick={removeEvent}
         >
           {todo.text} - {todo.date || "N/A"} (-)
         </div>
