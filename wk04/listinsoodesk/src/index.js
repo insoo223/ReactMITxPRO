@@ -2,27 +2,49 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import * as ReactBootstrap from 'react-bootstrap'
 
-// use of "props" to set data
-function NavBar(props) {
-  const list = props.menuitems;
+// Ex 3 - write out all items with their stock number
+// provide a button and use onClick={moveToCart} to move 1 item into the Shopping Cart
+// use React.useState to keep track of items in the Cart.
+// use React.useState to keep track of Stock items
+// list out the Cart items in another column
+function NavBar({ stockitems }) {
+  const [cart, setCart] = React.useState([]);
+  const [stock, setStock] = React.useState(stockitems);
   const { Button } = ReactBootstrap;
-  
-  console.log('Insoo\'s list rendering ');
-  // each item should have an unique key
-  const updatedList = list.map((item, index) => {
-    //log msg will be called 5 times at run-time.
-    //This is not called by onClick event but only called onece per web page loading
-    console.log('hi, insoo');
-    return(
-    <>
-      <Button key={index}>{item}</Button>
-    </>)
+  // event apple:2
+  const moveToCart = e => {
+    let [name, num] = e.target.innerHTML.split(":"); // innerHTML should be format name:3
+    // use newStock = stock.map to find "name" and decrease number in stock by 1
+    // only if instock is >=  do we move item to Cart and update stock
+    let newStock = stock.map((item, index) => {
+      if (item.name == name) item.instock--;
+      return item;
+    });
+    setStock(newStock);
+  };
+  const updatedList = stock.map((item, index) => {
+    return (
+      <Button onClick={moveToCart} key={index}>
+        {item.name}:{item.instock}
+      </Button>
+    );
   });
   // note that React needs to have a single Parent
-  return <ul>{updatedList}</ul>;
+  return (
+    <>
+      <ul style={{ listStyleType: "none" }}>{updatedList}</ul>
+      <h1>Shopping Cart</h1>
+    </>
+  );
 }
-const menuSrc = [1, 2, 3, 4, 5];
+const menuItems = [
+  { name: "apple", instock: 2 },
+  { name: "pineapple", instock: 3 },
+  { name: "pear", instock: 0 },
+  { name: "peach", instock: 3 },
+  { name: "orange", instock: 1 }
+];
 ReactDOM.render(
-  <NavBar menuitems={menuSrc}/>,
+  <NavBar stockitems={menuItems} />,
   document.getElementById("root")
 );
