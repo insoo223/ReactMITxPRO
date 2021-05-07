@@ -6,7 +6,7 @@ export const theme = {
 
 export const locale = {
   rainbow: '🌈',
-  Korea: '한글'
+  Korea: '❤' //to enter emoticon, press Win + .(period)
 };
 
 export const ThemeContext = React.createContext(theme.golden);
