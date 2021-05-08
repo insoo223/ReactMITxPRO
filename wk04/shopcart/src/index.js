@@ -10,6 +10,7 @@ function ShoppingCart({ availableItems }) {
   const { Button } = ReactBootstrap;
 
   // TODO: create state for stock and cart using React.useState
+  /*** (Insoo's comment on Sun May 9, 2021) useState declares a “state variable” to keep track of 1) product inventory as "stock" and 2)items put into shopping cart as "cart". Also, useState React Hook gives updating mechanism for those two tracking variables in accordance with onClick event. If not using Hook, you need to more complex class implementation to maitain "internal states" of React component across time-seriese events. This is why React Hook is called to provide "stateful logic". ***/
   const [stock, setStock] = React.useState(availableItems);
   const [cart, setCart] = React.useState([]);
   
@@ -23,19 +24,24 @@ function ShoppingCart({ availableItems }) {
     if (numInStock <= 0) 
       return; 
     
-      let item = stock.filter((item) => item.product == product);
+    //Search clicked product from stock items
+    let item = stock.filter((item) => item.product == product);
     
+    //Update inStock of clicked stock item
     let newStock = stock.map((item) => {
       if (item.product == product) {
         item.inStock--;
       }
       return item;
-    });//stock.map()
+    });//newStock = stock.map()
 
     // TODO: Update the stock state to include the new stock
+    // Update inStock of 
     setStock([...newStock]);
 
     // TODO: Update the cart state to include the updated item
+    // Existing "cart" inventory is added by selected "item".
+    // Spreading(...) should be used to concate btween arrays.
     setCart([...cart, ...item]); 
     //console.log(`Cart: ${JSON.stringify(cart)}`);
   };
