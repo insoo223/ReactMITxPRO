@@ -2,7 +2,7 @@
 # Project Name: ATM improvements 
 Base code for simple ATM app is given by MIT xPRO Front-End Development with React, course week 5.
 
-# My approach to improveme
+# My approach to refactoring
 I've refactored the base codes in terms of following aspects:
 
 1.Improvements I made
