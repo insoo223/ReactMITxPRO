@@ -1,5 +1,5 @@
 # ATM app created with Create-React-App toolchain
-Project Name: ATM improvements 
+# Project Name: ATM improvements 
 Base code for simple ATM app is given by MIT xPRO Front-End Development with React, course week 5.
 
 # My approach to improveme
@@ -27,7 +27,7 @@ D. In submit type input of ATMDeposit component, I add disabled property as foll
 
 A. In ATMDeposit component,  i put mode props which is assgined by atmMode state at its calling from parent component Account. 
 
-B. The return elements of ATMDeposit component has been modified to be embraced by  mode && <div> and </div>. Because empty string("") is regarded as false in logic comparison, the return elements who render input field and submit button displays nothing in null selection, otherwise they will be rendered out. 
+B. The return elements of ATMDeposit component has been modified to be embraced by  mode && \<div> and \</div>. Because empty string("") is regarded as false in logic comparison, the return elements who render input field and submit button displays nothing in null selection, otherwise they will be rendered out. 
 
 3.Challenge & overcome
 As a beginner in web programming, the execution flow of web components are not easily get and many of strange variables and tags are overburden.. I have reviewed again for the week4 lectures including JS tutorial, HTML W3 Schools site. Writing codes with paper and pencil, and put comments at my github codes, I'm getting feel better grasp on React, JSX and JS.
