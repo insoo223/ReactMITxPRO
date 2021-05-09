@@ -23,7 +23,7 @@ C. In ATMDeposit component, i put isValid props which is assgined by validTransa
 
 D. In submit type input of ATMDeposit component, I add disabled property as follows: disabled={!isValid}, so that the availability of submit button is determined by validTransaction state.
 
-1.2 Context-aware Input
+2.2 Context-aware Input
 
 A. In ATMDeposit component,  i put mode props which is assgined by atmMode state at its calling from parent component Account. 
 
