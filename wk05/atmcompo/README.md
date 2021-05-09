@@ -1,70 +1,34 @@
-# Getting Started with Create React App
+# ATM app created with Create-React-App toolchain
+# Project Name: ATM improvements 
+Base code for simple ATM app is given by MIT xPRO Front-End Development with React, course week 5.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# My approach to refactoring
+I've refactored the base codes in terms of following aspects:
 
-## Available Scripts
+1.Improvements I made
 
-In the project directory, you can run:
+1.1 Validity check not to overdraw from bank account: Comparing with cash withdraw amount and bank account total deposit, the availability of submit button is determined.
 
-### `npm start`
+1.2 Context-aware Input: Depending on atmMode, the availability of input field is decided. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2.My approach to refactoring
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+2.1 Validity check .
 
-### `npm test`
+A. In Account component, I added validTransaction state which is intended to show the overdraw state in "Cash Back" mode.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+B. In handleChange and handleSubmit event handler, I put validity check logic for "Cash Back" mode using (event.target.value > totalState) criteria for handleChange, (newTotal >= 0) for handleSubmit and update validTransaction state accordingly. 
 
-### `npm run build`
+C. In ATMDeposit component, i put isValid props which is assgined by validTransaction state at its calling from parent component Account. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+D. In submit type input of ATMDeposit component, I add disabled property as follows: disabled={!isValid}, so that the availability of submit button is determined by validTransaction state.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2.2 Context-aware Input
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+A. In ATMDeposit component,  i put mode props which is assgined by atmMode state at its calling from parent component Account. 
 
-### `npm run eject`
+B. The return elements of ATMDeposit component has been modified to be embraced by  mode && \<div> and \</div>. Because empty string("") is regarded as false in logic comparison, the return elements who render input field and submit button displays nothing in null selection, otherwise they will be rendered out. 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3.Challenge & overcome
+As a beginner in web programming, the execution flow of web components are not easily get and many of strange variables and tags are overburden.. I have reviewed again for the week4 lectures including JS tutorial, HTML W3 Schools site. Writing codes with paper and pencil, and put comments at my github codes, I'm getting feel better grasp on React, JSX and JS.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
