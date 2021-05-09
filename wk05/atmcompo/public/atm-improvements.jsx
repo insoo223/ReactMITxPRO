@@ -13,9 +13,9 @@ const ATMDeposit = ({ onChange, isDeposit, mode, isValid }) => {
         </label>
       </div>
     );//return
-  };//const ATMDeposit
+};//const ATMDeposit
   
-  const Account = () => {
+const Account = () => {
     const [deposit, setDeposit] = React.useState(0);
     const [totalState, setTotalState] = React.useState(0);
     const [isDeposit, setIsDeposit] = React.useState(true);
@@ -78,8 +78,8 @@ const ATMDeposit = ({ onChange, isDeposit, mode, isValid }) => {
         </select>        
         <ATMDeposit onChange={handleChange} isDeposit={isDeposit} mode={atmMode} isValid={validTransaction}></ATMDeposit>
       </form>
-    );
-  };
+    );//return
+};//Account
   // ========================================
   ReactDOM.render(<Account />, document.getElementById('root'));
   
