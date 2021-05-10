@@ -1,47 +1,61 @@
 function App() {
-  const { useState, useEffect } = React;
   const { Container } = ReactBootstrap;
+  const { useState, useEffect } = React;
   const [data, setData] = useState({ hits: [] });
-  const [url, setUrl] = useState("http://localhost:3000/data.json");
-  const [query, setQuery] = useState("");
-
+  const [query, setQuery] = useState("MIT");
+  const [isError, setIsError] = useState(false);
+  const [url, setUrl] = useState(
+    "https://hn.algolia.com/api/v1/search?query=MIT"
+  );
+  const [isLoading, setIsLoading] = React.useState(false);
   console.log("Rendering App");
-
-  useEffect(() => {
+  
+  useEffect(() => {   // Handles the LifeCycle Events
     console.log("Fetching data...");
     const fetchData = async () => {
-      const result = await axios(url);
-      setData(result.data);
-    };//fetchData
+      setIsLoading(true);
+      try {
+        const result = await axios(url);
+        setData(result.data);
+      } catch (error) {
+        setIsError(true);
+      }
+      setIsLoading(false);
+    };
 
     fetchData();
-  }, []);//useEffect
-
+  }, [url]);
   return (
     <Container>
-      <input
-        type="text"
-        value={query}
-        onChange={event => setQuery(event.target.value)}
-      />
-      <button
-        type="button"
-        onClick={() => setUrl("http://localhost:3000/data.json")}
-      >
-        Search
-      </button>
+      <form
+        onSubmit={event => {
+          setUrl(`http://hn.algolia.com/api/v1/search?query=${query}`);
 
-      <ul>
-        {data.hits.map(item => (
-          <li key={item.objectID}>
-            <a href={item.url}>{item.title}</a>
-          </li>
-        ))}
-      </ul>
+          event.preventDefault();
+        }}
+      >
+        <input
+          type="text"
+          value={query}
+          onChange={event => setQuery(event.target.value)}
+        />
+        <button type="submit">Search</button>
+      </form>
+      {isError && <div>Something went wrong ...</div>}
+
+      {isLoading ? (
+        <div>Loading ...</div>
+      ) : (
+        <ul>
+          {data.hits.map(item => (
+            <li key={item.objectID}>
+              <a href={item.url}>{item.title}</a>
+            </li>
+          ))}
+        </ul>
+      )}
     </Container>
   );
 }
 // ========================================
 ReactDOM.render(<App />, document.getElementById("root"));
-
-//  // "https://hn.algolia.com/api/v1/search?query=redux"
