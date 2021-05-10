@@ -9,7 +9,7 @@ const ATMDeposit = ({ onChange, isDeposit, mode, isValid }) => {
         <label className="label huge">
             <h3> {choice[Number(!isDeposit)]}</h3>
             <input id="number-input" type="number" width="200" onChange={onChange}></input>
-            <input type="submit" width="200" value="Submit" id="submit-input" disabled={!isValid} ></input>
+            <input id="submit-input" type="submit" width="200" value="Submit"  disabled={!isValid} ></input>
         </label>
       </div>
     );//return
