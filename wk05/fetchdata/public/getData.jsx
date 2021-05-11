@@ -45,6 +45,9 @@ function App() {
    * 2.And submit button click sets "url" state composed with "query" state added to Hacking New site.
    * 3.If there's error while feting url so "isError" state is set to true, then show msg at web body.
    * 4.If still fetching from url so "isLoading" state is set to ture, then show msg at web body.
+   * 5.Fetching completed from url so "isLoading" state is set to false, then show contents of url at web body.
+   * <Interesting stuffs>
+   * 1.In data.hits.map function, how do we know that the fetched data has properties like objectID, url, and title?
    */
   return (
     <Container>
@@ -63,13 +66,13 @@ function App() {
       {isLoading ? (
         <div>Loading ...</div>
       ) : (
-        <ul>
+        <ol>
           {data.hits.map(item => (
             <li key={item.objectID}>
               <a href={item.url}>{item.title}</a>
             </li>
           ))}
-        </ul>
+        </ol>
       )}
     </Container>
   );//return
