@@ -1,3 +1,4 @@
+//List buttons to access pagenated contents easily.
 const Pagination = ({ items, pageSize, onPageChange }) => {
   const { Button } = ReactBootstrap;
   if (items.length <= 1) return null;
@@ -150,16 +151,18 @@ function App() {
   const pageSize = 10; //number of lists per paage is 10.
   const [{ data, isLoading, isError }, doFetch] = useDataApi(
     "https://hn.algolia.com/api/v1/search?query=MIT", { hits: [] } );
+
   const handlePageChange = e => { setCurrentPage(Number(e.target.textContent) ) };
   
   //web contents of url
   let page = data.hits;
 
+  //Get current page
   if (page.length >= 1) {
     page = paginate(page, currentPage, pageSize);
     console.log(`currentPage: ${currentPage}`);
   }
-  
+
   /*** return of App
    * 1.In the form, input field change sets "query" state 
    * 2.And submit button click call doFetch() to set "url" state composed with "query" state added to Hacking New site. doFetch() is a returned function from useDataApi custom Hook.
