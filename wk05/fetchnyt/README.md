@@ -13,3 +13,4 @@ cd fetchnyt
 
 fetchnyt is project folder and you can change for your own purpose.
 
+![image](https://user-images.githubusercontent.com/13712996/117990813-7aa4cc00-b378-11eb-9c33-13355d61134b.png)
