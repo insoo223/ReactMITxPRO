@@ -1,6 +1,22 @@
 const Pagination = ({ items, pageSize, onPageChange }) => {
   // Part 2 code goes here
-  return null;
+  const { Button } = ReactBootstrap;
+  if (items.length <= 1) return null;
+
+  let num = Math.ceil(items.length / pageSize);
+  let pages = range(1, num + 1);
+  const list = pages.map(page => {
+    return (
+      <Button key={page} onClick={onPageChange} className="page-item">
+        {page}
+      </Button>
+    );
+  });
+  return (
+    <nav>
+      <ul className="pagination">{list}</ul>
+    </nav>
+  );
 };
 
 const range = (start, end) => {
@@ -29,11 +45,23 @@ const useDataApi = (initialUrl, initialData) => {
     let didCancel = false;
     const fetchData = async () => {
       // Part 1, step 1 code goes here
-    };
+      dispatch( {type:'FETCH_INIT'});
+      try{
+        const result = await axios(url);
+        if (!didCancel) 
+          dispatch( {type:'FETCH_SUCCESS', payload:result.data} );
+      }//try
+      catch (error){
+        if (!didCancel) 
+          dispatch( {type:'FETCH_FAILURE'});
+      }//catch
+    };//fetchData
+
     fetchData();
+
     return () => {
       didCancel = true;
-    };
+    };//returen
   }, [url]);
   return [state, setUrl];
 };
@@ -86,17 +114,37 @@ function App() {
   }
   return (
     <Fragment>
+      <form
+        onSubmit={event => {
+          doFetch("http://hn.algolia.com/api/v1/search?query=${query}");
+          event.preventDefault();
+        }}
+      >
+        <input
+          type="text"
+          value={query}
+          onChange={event => setQuery(event.target.value)}
+        />
+        <button type="submit">Search</button>
+      </form>
+
+      {isError && <div>Something went wrong ...</div>}
+
       {isLoading ? (
         <div>Loading ...</div>
       ) : (
         // Part 1, step 2 code goes here
-        <ul>
-          {page.map((item) => (
-            <li key={item.objectID}>
-              <a href={item.url}>{item.title}</a>
-            </li>
-          ))}
-        </ul>
+        <div className='list-group'>
+          <ul>
+            {page.map((item) => (
+              <div className='list-group-item'>
+                <li key={item.objectID}>
+                  <a href={item.url}>{item.title}</a>
+                </li>
+              </div>
+            ))}
+          </ul>
+        </div>
       )}
       <Pagination
         items={data.hits}
