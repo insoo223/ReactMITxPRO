@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
-//import ReactDOM from 'react-dom';
+import React,  { Fragment, useEffect, useState } from 'react';
 import axios from 'axios';
 
 
 const App = () => {
     const [loading, setLoading] = useState(false);
     const [articles, setArticles] = useState([]);
+    const [query, setQuery] = useState('Arts');
 
     useEffect(() => {
         const getArticles = async () => {
             setLoading(true);
             
-            const aSite = `https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=section_name:("Arts")&sort=newest&api-key=${process.env.REACT_APP_NYTIMES_API_KEY}`;
+            const aSite = `https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=section_name:("${query}")&sort=newest&api-key=${process.env.REACT_APP_NYTIMES_API_KEY}`;
 
             const res = await axios (aSite);
             
@@ -28,10 +28,27 @@ const App = () => {
         };
         getArticles();
 
-    }, []);
+    }, [query]);
 
     return (
-        <div>
+        <Fragment>
+            <form
+                onSubmit={event => {
+                //doFetch("http://hn.algolia.com/api/v1/search?query=${query}");
+                //doFetch(webSite+'${query}');
+                //doFetch(aSite);
+                setQuery(event.target.value);
+                event.preventDefault();
+                }}
+            >
+                <input
+                type="text"
+                value={query}
+                onChange={event => setQuery(event.target.value)}
+                />
+                <button type="submit">Search</button>
+            </form>
+    
             {
                 loading ? (
                     "Loading..."
@@ -47,8 +64,8 @@ const App = () => {
                     </ol>
                 )
             }
-        </div>
-    );//return
+        </Fragment>
+    );//return    
 };
 
 export default App;
