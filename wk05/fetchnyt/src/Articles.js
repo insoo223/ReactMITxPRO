@@ -21,18 +21,16 @@ export default function Articles({ loading, articles }) {
     return (
         <>
             {
-                loading ? (
-                    "Loading..."
-                ) : (
-                        <div className={classes.root} >
-                            <Grid container spacing={3}>
-                                {articles.map((article) => (
-                                    <Grid item xs={12} sm={4} key={article._id}>
-                                        <Article article={article} />
-                                    </Grid>
+                loading ? ( "Loading...") : 
+                    (<div className={classes.root} >
+                        <Grid container spacing={3}>
+                            {articles.map((item) => (
+                                <Grid item xs={12} sm={4} key={item._id}>
+                                    <Article article={item} />
+                                </Grid>
                                 ))}
-                            </Grid>
-                        </div>)}
+                        </Grid>
+                    </div>)}
         </>
     );
 }
