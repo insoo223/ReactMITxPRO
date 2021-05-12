@@ -49,7 +49,8 @@ const useDataApi = (initialUrl, initialData) => {
       try{
         const result = await axios(url);
         if (!didCancel) 
-          dispatch( {type:'FETCH_SUCCESS', payload:result.data} );
+          //dispatch( {type:'FETCH_SUCCESS', payload:result.data} );
+          dispatch( {type:'FETCH_SUCCESS', payload:result.data.response.docs.main} );
       }//try
       catch (error){
         if (!didCancel) 
@@ -98,8 +99,23 @@ function App() {
   const [query, setQuery] = useState('MIT');
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
+  /* 
+    'https://hn.algolia.com/api/v1/search?query=', //ok
+    https://api.nytimes.com/svc/search/v2/articlesearch.json?q=
+    https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=section_name:("Arts")&sort=newest&api-key=
+    //Not ok followings:
+    'https://www.nytimes.com/search?query=',
+    'https://www.economist.com/search?q='
+    'https://www.accuweather.com/en/search-locations?query=';
+  */
+ const webSite = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=section_name:("Arts")&sort=newest&api-key=';
+ const kwd ='MIT'; //MIT python jinhae
+ const apiHeader = '&api-key=';
+const apiKey ='pdvKvddyrX6tWREGUsTqzKdP1W4HGYKA'; //NYT api
+ 
   const [{ data, isLoading, isError }, doFetch] = useDataApi(
-    'https://hn.algolia.com/api/v1/search?query=MIT',
+    //webSite+kwd+apiHeader+apiKey, //MIT
+    webSite+apiKey,
     {
       hits: [],
     }
@@ -116,7 +132,8 @@ function App() {
     <Fragment>
       <form
         onSubmit={event => {
-          doFetch("http://hn.algolia.com/api/v1/search?query=${query}");
+          //doFetch("http://hn.algolia.com/api/v1/search?query=${query}");
+          doFetch(webSite+'${query}');
           event.preventDefault();
         }}
       >
@@ -138,7 +155,7 @@ function App() {
           <ul>
             {page.map((item) => (
               <div className='list-group-item'>
-                <li key={item.objectID}>
+                <li key={item.Object}>
                   <a href={item.url}>{item.title}</a>
                 </li>
               </div>
