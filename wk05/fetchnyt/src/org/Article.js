@@ -24,22 +24,10 @@ const Article = ({ article }) => {
         <div className={classes.root} >
             {article && (
                 <Card className={classes.card} id={article._id}>
-                    <CardMedia className={classes.media} component="img" 
-                    src={article.multimedia?.[0]?.url ?
-                        `https://nytimes.com/${article.multimedia[0].url}` : 
-                        'https://upload.wikimedia.org/wikipedia/commons/4/40/New_York_Times_logo_variation.jpg'
-                    } alt="news-img" />
                     <CardContent>
                         <Typography color="primary" variant="h6">
                             <a href={article.web_url} target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
                                 {article.headline.main}</a>
-                        </Typography>
-                        <Typography color="textSecondary" variant="subtitle2">
-                            {article.byline.original}
-                        </Typography>
-                        <Typography variant="body2" component="p">
-                            {article.snippet}
-                        </Typography>
                     </CardContent>
                 </Card >
             )}

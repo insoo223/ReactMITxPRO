@@ -1,8 +1,3 @@
-import React, { useEffect, useState } from 'react';
-//import ReactDOM from 'react-dom';
-import axios from 'axios';
-
-
 const App = () => {
     const [loading, setLoading] = useState(false);
     const [articles, setArticles] = useState([]);
@@ -31,25 +26,20 @@ const App = () => {
     }, []);
 
     return (
-        <div>
-            {
-                loading ? (
-                    "Loading..."
-                ) : (
-                    <ol>
-                        {articles.map((item) => (
-                            <div className='list-group-item'>
-                                <li key={item._id}>
-                                    <a href={item.web_url}>{item.headline.main}</a>
-                                </li>
-                            </div>
-                        ))}
-                    </ol>
-                )
-            }
-        </div>
-    );//return
+        <>
+            (loading ? ( "Loading...") : 
+                (<div className={classes.root} >
+                    {articles.map((item) => (
+                        <div className='list-group-item'>
+                            <li key={item.Object}>
+                                <a href={item.web_url}>{item.headline.main}</a>
+                            </li>
+                        </div>
+                  ))}
+                </div>)
+            )
+        </>
+    );
 };
 
 export default App;
-

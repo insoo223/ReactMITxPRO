@@ -23,13 +23,9 @@ export default function Articles({ loading, articles }) {
             {
                 loading ? ( "Loading...") : 
                     (<div className={classes.root} >
-                        <Grid container spacing={3}>
-                            {articles.map((item) => (
-                                <Grid item xs={12} sm={4} key={item._id}>
-                                    <Article article={item} />
-                                </Grid>
-                                ))}
-                        </Grid>
+                        {articles.map((item) => (
+                            <Article article={item} />
+                        ))}
                     </div>)}
         </>
     );

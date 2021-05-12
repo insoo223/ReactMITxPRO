@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-//import ReactDOM from 'react-dom';
+import Articles from '../src/Articles';
 import axios from 'axios';
 
 
@@ -32,24 +32,9 @@ const App = () => {
 
     return (
         <div>
-            {
-                loading ? (
-                    "Loading..."
-                ) : (
-                    <ol>
-                        {articles.map((item) => (
-                            <div className='list-group-item'>
-                                <li key={item._id}>
-                                    <a href={item.web_url}>{item.headline.main}</a>
-                                </li>
-                            </div>
-                        ))}
-                    </ol>
-                )
-            }
-        </div>
-    );//return
+            <Articles loading={loading} articles={articles} />
+        </div >
+    );
 };
 
 export default App;
-
