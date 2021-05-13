@@ -1,23 +1,25 @@
 const Pagination = ({ items, pageSize, onPageChange }) => {
   // Part 2 code goes here
   const { Button } = ReactBootstrap;
-  if (items.length <= 1) return null;
+  if (items.length <=1) return null;
+  const numTotalPg = Math.ceil(items.length / pageSize);
+  let pages = range(1, numTotalPg+1);
+  const list = pages.map( pg => 
+    {
+      return(
+        <Button className="page-item" key={pg}onClick={onPageChange}>
+        {pg}
+        </Button>
+      )
+    }
+  );//pages.map 
 
-  let num = Math.ceil(items.length / pageSize);
-  let pages = range(1, num + 1);
-  const list = pages.map(page => {
-    return (
-      <Button key={page} onClick={onPageChange} className="page-item">
-        {page}
-      </Button>
-    );
-  });
-  return (
+  return(
     <nav>
       <ul className="pagination">{list}</ul>
     </nav>
   );
-};
+}//Pagination
 
 const range = (start, end) => {
   return Array(end - start + 1)
@@ -45,16 +47,15 @@ const useDataApi = (initialUrl, initialData) => {
     let didCancel = false;
     const fetchData = async () => {
       // Part 1, step 1 code goes here
-      dispatch( {type:'FETCH_INIT'});
+      dispatch({type:'FETCH_INIT'});
       try{
         const result = await axios(url);
         if (!didCancel) 
-          //dispatch( {type:'FETCH_SUCCESS', payload:result.data} );
-          dispatch( {type:'FETCH_SUCCESS', payload:result.data.response.docs.main} );
+          dispatch({type:'FETCH_SUCCESS', payload:result.data});
       }//try
       catch (error){
         if (!didCancel) 
-          dispatch( {type:'FETCH_FAILURE'});
+          dispatch({type:'FETCH_FAILURE'});
       }//catch
     };//fetchData
 
@@ -99,41 +100,28 @@ function App() {
   const [query, setQuery] = useState('MIT');
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
-  /* 
-    'https://hn.algolia.com/api/v1/search?query=', //ok
-    https://api.nytimes.com/svc/search/v2/articlesearch.json?q=
-    https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=section_name:("Arts")&sort=newest&api-key=
-    //Not ok followings:
-    'https://www.nytimes.com/search?query=',
-    'https://www.economist.com/search?q='
-    'https://www.accuweather.com/en/search-locations?query=';
-  */
- const webSite = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=section_name:("Arts")&sort=newest&api-key=';
- const kwd ='MIT'; //MIT python jinhae
- const apiHeader = '&api-key=';
-const apiKey ='pdvKvddyrX6tWREGUsTqzKdP1W4HGYKA'; //NYT api
- 
   const [{ data, isLoading, isError }, doFetch] = useDataApi(
-    //webSite+kwd+apiHeader+apiKey, //MIT
-    webSite+apiKey,
+    'https://hn.algolia.com/api/v1/search?query=MIT',
     {
       hits: [],
     }
   );
+
   const handlePageChange = (e) => {
     setCurrentPage(Number(e.target.textContent));
   };
+
   let page = data.hits;
+
   if (page.length >= 1) {
     page = paginate(page, currentPage, pageSize);
-    console.log(`currentPage: ${currentPage}`);
-  }
+    console.log(`currentPage:${currentPage}`);  
+  };
   return (
     <Fragment>
       <form
         onSubmit={event => {
-          //doFetch("http://hn.algolia.com/api/v1/search?query=${query}");
-          doFetch(webSite+'${query}');
+          doFetch("http://hn.algolia.com/api/v1/search?query=${query}");
           event.preventDefault();
         }}
       >
@@ -151,11 +139,11 @@ const apiKey ='pdvKvddyrX6tWREGUsTqzKdP1W4HGYKA'; //NYT api
         <div>Loading ...</div>
       ) : (
         // Part 1, step 2 code goes here
-        <div className='list-group'>
+        <div className="list-group">
           <ul>
             {page.map((item) => (
-              <div className='list-group-item'>
-                <li key={item.Object}>
+              <div className="list-group-item">
+                <li key={item.objectID}>
                   <a href={item.url}>{item.title}</a>
                 </li>
               </div>

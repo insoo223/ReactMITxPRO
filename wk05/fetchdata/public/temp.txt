@@ -1,0 +1,5 @@
+<Pagination
+items={data.hits}
+pageSize={pageSize}
+onPageChange={handlePageChange}
+></Pagination>
