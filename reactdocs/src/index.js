@@ -13,9 +13,13 @@ const user = {
   lastName: 'Kim'
 }
 
-//JSX에 함수 결과값을 받게
-//JSX에서 중괄호 안에 어떤 JS표현이라도 가능.
-const element = <h1>Hello,{formatName(user)}</h1>;
+//JSX에 함수 결과값을 받게, JSX에서 중괄호 안에 어떤 JS표현이라도 가능.
+//가독성 위해 여러 줄에 걸쳐 표현하고, JSX를 괄호로 감싸는 게 좋다.
+const element = (
+<h1>
+  Hello,{formatName(user)}
+</h1>
+);
 
 /** document.getElementById('root')는 웹 DOM의 리액트 확장판
  * 요약: 
