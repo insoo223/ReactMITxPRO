@@ -1,15 +1,21 @@
-/** React Docs-Introducing JSX
+/** React Docs-Introducing JSX:Embed ft. return
  * Ref: https://reactjs.org/docs/introducing-jsx.html
  */
 //리액트 문서오브젝트모델(react-dom)이 렌더링 엔진 모듈
 import ReactDOM from 'react-dom'; 
 
-const name = '김인수';
+function formatName(person) {
+  return person.firstName + ' ' + person.lastName;
+}
 
-//아래 문장은 문자열도 아니고, HTML도 아니다. 재밌다! 
-//이는 JSX로 구성된 리액트 요소(element) 사례.
-//JSX는 자바스크립트의 확장 문법. 아래에서 변수를 중괄호에 감싸면, 렌더링 시 그 값이 대입됨.
-const element = <h1>Hello,{name}</h1>;
+const user = {
+  firstName: 'Insoo',
+  lastName: 'Kim'
+}
+
+//JSX에 함수 결과값을 받게
+//JSX에서 중괄호 안에 어떤 JS표현이라도 가능.
+const element = <h1>Hello,{formatName(user)}</h1>;
 
 /** document.getElementById('root')는 웹 DOM의 리액트 확장판
  * 요약: 
