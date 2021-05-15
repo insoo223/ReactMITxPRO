@@ -1,17 +1,25 @@
-/** React Docs-Introducing JSX:Embed ft. return
+/** React Docs-Rendering Elements:Only update for changed element
  * Ref: https://reactjs.org/docs/rendering-elements.html
  */
 //리액트 문서오브젝트모델(react-dom)이 렌더링 엔진 모듈
+import React from 'react';
 import ReactDOM from 'react-dom'; 
 
+//변화된 부분만 갱신해서 React element생성
+function tick() {
+  const element = (
+    <div>
+      <h1>Hello,World!</h1>
+      <h2>It is {new Date().toLocaleTimeString()}</h2>
+    </div>
+  );
 
-//JSX에 함수 결과값을 받게, JSX에서 중괄호 안에 어떤 JS표현이라도 가능.
-//가독성 위해 여러 줄에 걸쳐 표현하고, JSX를 괄호로 감싸는 게 좋다.
-const element = (
-<h1>
-  Hello,World!
-</h1>
-);
+  ReactDOM.render(element, document.getElementById('root'));
+
+};//tick
+
+setInterval(tick, 1000);
+
 
 /** ReactDOM()은 React element의 변화된 부분만 인식해서 새로운 React element를 생성, 갱신
  * 요약: 
@@ -25,7 +33,4 @@ const element = (
  * 1.React: Rethinking best practice by Pete Hunt (JSConf EU 2013)
  * https://www.youtube.com/watch?v=x7cQ3mrcKaY 
  **/
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
+//ReactDOM.render(element, document.getElementById('root') );
