@@ -1,4 +1,4 @@
-/** React Docs-components and props: ft. component
+/** React Docs-components and props: Default App() ft.component
  * Ref: https://reactjs.org/docs/components-and-props.html
  */
 //리액트 문서오브젝트모델(react-dom)이 렌더링 엔진 모듈
@@ -13,10 +13,16 @@ function Welcome(props) {
   )
 };//Welcome
 
-//함수 콤포를 태크로 취함.
-const element = (
-  <Welcome name="Insoo"/>
-);//element
+//(관습적으로) 기본 함수 콤포: App()
+function App() {
+  return(
+    <div>
+    <Welcome name="Insoo"/>
+    <Welcome name="Jay"/>
+    <Welcome name="Steve"/>
+  </div>
+  );
+};//App
 
 /** ReactDOM()은 React element의 변화된 부분만 인식해서 새로운 React element를 생성, 갱신
  * 요약: 
@@ -30,4 +36,4 @@ const element = (
  * 1.React: Rethinking best practice by Pete Hunt (JSConf EU 2013)
  * https://www.youtube.com/watch?v=x7cQ3mrcKaY 
  **/
-ReactDOM.render(element, document.getElementById('root') );
+ReactDOM.render(<App/>, document.getElementById('root') );
