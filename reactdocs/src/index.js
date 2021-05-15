@@ -1,4 +1,4 @@
-/** React Docs-components and props: (Nested brace compo.)Refactoring or extracting component
+/** React Docs-components and props: (Harmony from Chaos))Refactoring or extracting component
  * Ref: https://reactjs.org/docs/components-and-props.html
  */
 //리액트 문서오브젝트모델(react-dom)이 렌더링 엔진 모듈
@@ -18,20 +18,32 @@ function formatDate(date) {
   return date.toLocaleDateString();
 };//formatDate
 
+function Avatar(props) {
+  return(
+    <img className="Avatar"
+      src={props.user.avatarUrl}
+      alt={props.user.name}
+    />
+  )//return
+}//Avatar
+
+function UserInfo(props) {
+  return(
+    <div className="UserInfo">
+      <Avatar user={props.user}/>
+      <div className="UserInfo-name">
+        {props.user.name}
+      </div>
+    </div>
+  )//return
+}//UserInfo
+
 //복잡하게 얽힌 함수 콤포. 
 //단순하고 재활용하기 편하게 잘라내자(Refactoring or extracting)
 function RenderComment(props) {
   return (
     <div className="Comment">
-      <div className="UserInfo">
-        <img className="Avatar"
-          src={props.author.avatarUrl} 
-          alt={props.author.name}
-        />
-        <div className="UserInfo-name">
-          {props.author.name}
-        </div>
-      </div>
+      <UserInfo user={props.author}/>
       <div className="Comment-text">
         {props.text}
       </div>
@@ -39,7 +51,6 @@ function RenderComment(props) {
         {formatDate(props.date)}
       </div>
     </div>
-   
   );
 };//RenderComment
 
