@@ -1,4 +1,4 @@
-/** React Docs-components and props
+/** React Docs-components and props: ft. component
  * Ref: https://reactjs.org/docs/components-and-props.html
  */
 //리액트 문서오브젝트모델(react-dom)이 렌더링 엔진 모듈
