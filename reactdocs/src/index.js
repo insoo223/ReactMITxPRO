@@ -1,25 +1,22 @@
-/** React Docs-Rendering Elements:Only update for changed element
- * Ref: https://reactjs.org/docs/rendering-elements.html
+/** React Docs-components and props
+ * Ref: https://reactjs.org/docs/components-and-props.html
  */
 //리액트 문서오브젝트모델(react-dom)이 렌더링 엔진 모듈
 import React from 'react';
 import ReactDOM from 'react-dom'; 
 
-//변화된 부분만 갱신해서 React element생성
-function tick() {
-  const element = (
-    <div>
-      <h1>Hello,World!</h1>
-      <h2>It is {new Date().toLocaleTimeString()}</h2>
-    </div>
-  );
+//함수 콤포. 
+//콤포는 대문자로 시작. html DOM 태그는 소문자로 시작.
+function Welcome(props) {
+  return (
+    <h1>Hello, {props.name}</h1>
+  )
+};//Welcome
 
-  ReactDOM.render(element, document.getElementById('root'));
-
-};//tick
-
-setInterval(tick, 1000);
-
+//함수 콤포를 태크로 취함.
+const element = (
+  <Welcome name="Insoo"/>
+);//element
 
 /** ReactDOM()은 React element의 변화된 부분만 인식해서 새로운 React element를 생성, 갱신
  * 요약: 
@@ -33,4 +30,4 @@ setInterval(tick, 1000);
  * 1.React: Rethinking best practice by Pete Hunt (JSConf EU 2013)
  * https://www.youtube.com/watch?v=x7cQ3mrcKaY 
  **/
-//ReactDOM.render(element, document.getElementById('root') );
+ReactDOM.render(element, document.getElementById('root') );
