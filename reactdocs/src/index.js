@@ -1,4 +1,4 @@
-/** React Docs-components and props: (Harmony from Chaos))Refactoring or extracting component
+/** React Docs-components and props: (Harmony from Chaos)Refactoring or extracting component
  * Ref: https://reactjs.org/docs/components-and-props.html
  */
 //리액트 문서오브젝트모델(react-dom)이 렌더링 엔진 모듈
@@ -18,6 +18,7 @@ function formatDate(date) {
   return date.toLocaleDateString();
 };//formatDate
 
+//props는 call-by-value꼴로만 사용됨. 즉,props 값을 읽기만 하고 쓰지 않음.
 function Avatar(props) {
   return(
     <img className="Avatar"
