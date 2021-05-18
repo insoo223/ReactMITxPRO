@@ -1,69 +1,49 @@
-/** React Docs-State and Lifecycle:tick() Three Indep. Components
- * Ref: https://reactjs.org/docs/state-and-lifecycle.html
+/** React Docs-Handling Events: error by Not binding event handler
+ * Ref: https://reactjs.org/docs/handling-events.html
  */
 //리액트 문서오브젝트모델(react-dom)이 렌더링 엔진 모듈
 import React from 'react';
 import ReactDOM from 'react-dom'; 
+//import {useState} from 
 
-/*
-function Clock(props) {
-  return(
-    <div>
-      <h1>Hello,World!</h1>
-      <h2>It is {props.date.toLocaleTimeString()}</h2>
-    </div>
-  );//return
-}//Clock
-*/
-
-//class component for Clock using state
-class Clock extends React.Component {
+//class component for Toggle using state
+class Toggle extends React.Component {
   constructor(props) {
     super(props);
     //필요한 상태는 "생성자"에서 선언된다.
-    this.state = {date: new Date()};
+    this.state = {isToggleOn: true};
   }//constructor
 
   //생성자와 ReactDOM.render()이후 3번째로 실행
   componentDidMount() {
-    //매 초 틱함수 호출
-    this.timerID = setInterval //timerID는 임의로 붙인 속성
-    ( () =>
-      this.tick(), 1000
-    );//setInterval
   }//componentDidMount
 
   componentWillUnmount() {
-    clearInterval(this.timerID)
   }//componentWillUnmount
 
   //틱 함수는 상태설정(setState)을 통해 date 상태 갱신
   //상태갱신되면 리액트 돔은 자동으로 렌더링 즉, 렌더러 자동 호출 
-  tick() {
-    this.setState
-    ( 
-      {
-        date: new Date() // 세미콜론(;) 넣으면 안됨. 쉼표 가능
-      }
-    );//setState
-  }//tick
+  //이벤트핸들러가 생성자에 바인딩 되지 않으면 타입에러 발생. this를 알지 못함.
+  handleClick() {
+    this.setState (state => (
+        {isToggleOn: !state.isToggleOn} // 세미콜론(;) 넣으면 안됨. 쉼표 가능      
+      )
+    )
+  }//handleClick
 
   render() {
     return(
-      <div>
-        <h1>Hello,Insoo!</h1>
-        <h2>It is {this.state.date.toLocaleTimeString()}</h2>
-      </div>
+      <button onClick={this.handleClick}>
+        {this.state.isToggleOn ? "On" : "Off"}
+      </button>
     );//return
   }//render
-}//Clock
+}//Toggle
 
 function App() {
   return (
     <div>
-      <Clock/>
-      <Clock/>
-      <Clock/>
+      <Toggle/>
     </div>
   );//return
 }//App
@@ -80,4 +60,4 @@ function App() {
  * 1.React: Rethinking best practice by Pete Hunt (JSConf EU 2013)
  * https://www.youtube.com/watch?v=x7cQ3mrcKaY 
  **/
-ReactDOM.render(<App/>, document.getElementById('root') );
+ReactDOM.render(<Toggle/>, document.getElementById('root') );
