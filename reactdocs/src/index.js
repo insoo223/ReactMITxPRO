@@ -1,4 +1,4 @@
-/** React Docs-State and Lifecycle:tick() Reusable Trial 3-state
+/** React Docs-State and Lifecycle:tick() Three Indep. Components
  * Ref: https://reactjs.org/docs/state-and-lifecycle.html
  */
 //리액트 문서오브젝트모델(react-dom)이 렌더링 엔진 모듈
@@ -58,6 +58,16 @@ class Clock extends React.Component {
   }//render
 }//Clock
 
+function App() {
+  return (
+    <div>
+      <Clock/>
+      <Clock/>
+      <Clock/>
+    </div>
+  );//return
+}//App
+
 /** ReactDOM()은 React element의 변화된 부분만 인식해서 새로운 React element를 생성, 갱신
  * 요약: 
  * 1.React element는 root DOM node (html화일의  <div id="root"></div> 부분)에서 렌더링됨
@@ -70,4 +80,4 @@ class Clock extends React.Component {
  * 1.React: Rethinking best practice by Pete Hunt (JSConf EU 2013)
  * https://www.youtube.com/watch?v=x7cQ3mrcKaY 
  **/
-ReactDOM.render(<Clock/>, document.getElementById('root') );
+ReactDOM.render(<App/>, document.getElementById('root') );
