@@ -1,4 +1,4 @@
-/** React Docs-State and Lifecycle
+/** React Docs-State and Lifecycle:tick() Reusable Trial 1-props
  * Ref: https://reactjs.org/docs/state-and-lifecycle.html
  */
 //리액트 문서오브젝트모델(react-dom)이 렌더링 엔진 모듈
