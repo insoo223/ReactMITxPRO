@@ -1,10 +1,11 @@
-/** React Docs-State and Lifecycle:tick() Reusable Trial 1-props
+/** React Docs-State and Lifecycle:tick() Reusable Trial 1-class
  * Ref: https://reactjs.org/docs/state-and-lifecycle.html
  */
 //리액트 문서오브젝트모델(react-dom)이 렌더링 엔진 모듈
 import React from 'react';
 import ReactDOM from 'react-dom'; 
 
+/*
 function Clock(props) {
   return(
     <div>
@@ -12,6 +13,19 @@ function Clock(props) {
       <h2>It is {props.date.toLocaleTimeString()}</h2>
     </div>
   );//return
+}//Clock
+*/
+
+//class component for Clock
+class Clock extends React.Component {
+  render() {
+    return(
+      <div>
+        <h1>Hello,Insoo!</h1>
+        <h2>It is {this.props.date.toLocaleTimeString()}</h2>
+      </div>
+    );//return
+  }//render
 }//Clock
 
 function tick() {
