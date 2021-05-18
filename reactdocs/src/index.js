@@ -1,69 +1,26 @@
-/** React Docs-components and props: (Harmony from Chaos)Refactoring or extracting component
- * Ref: https://reactjs.org/docs/components-and-props.html
+/** React Docs-State and Lifecycle
+ * Ref: https://reactjs.org/docs/state-and-lifecycle.html
  */
 //리액트 문서오브젝트모델(react-dom)이 렌더링 엔진 모듈
 import React from 'react';
 import ReactDOM from 'react-dom'; 
 
-const usrComment = {
-  date: new Date(),
-  text: 'I hope you enjoy learning React!',
-  author: {
-    name: 'Insoo Kim',
-    avatarUrl: 'https://placekitten.com/g/64/64'
-  }
-};//usrComment
-
-function formatDate(date) {
-  return date.toLocaleDateString();
-};//formatDate
-
-//props는 call-by-value꼴로만 사용됨. 즉,props 값을 읽기만 하고 쓰지 않음.
-function Avatar(props) {
+function Clock(props) {
   return(
-    <img className="Avatar"
-      src={props.user.avatarUrl}
-      alt={props.user.name}
-    />
-  )//return
-}//Avatar
-
-function UserInfo(props) {
-  return(
-    <div className="UserInfo">
-      <Avatar user={props.user}/>
-      <div className="UserInfo-name">
-        {props.user.name}
-      </div>
+    <div>
+      <h1>Hello,World!</h1>
+      <h2>It is {props.date.toLocaleTimeString()}</h2>
     </div>
-  )//return
-}//UserInfo
+  );//return
+}//Clock
 
-//복잡하게 얽힌 함수 콤포. 
-//단순하고 재활용하기 편하게 잘라내자(Refactoring or extracting)
-function RenderComment(props) {
-  return (
-    <div className="Comment">
-      <UserInfo user={props.author}/>
-      <div className="Comment-text">
-        {props.text}
-      </div>
-      <div className="Comment-date">
-        {formatDate(props.date)}
-      </div>
-    </div>
-  );
-};//RenderComment
+function tick() {
+  //ReactDOM.render(element, document.getElementById('root'));
+  ReactDOM.render(<Clock date={new Date()}/>, document.getElementById('root'));
+};//tick
 
-//(관습적으로) 기본 함수 콤포: App()
-function App() {
-  return(
-    <RenderComment author={usrComment.author}
-      text={usrComment.text}
-      date={usrComment.date} 
-    />
-  );
-};//App
+setInterval(tick, 1000);
+
 
 /** ReactDOM()은 React element의 변화된 부분만 인식해서 새로운 React element를 생성, 갱신
  * 요약: 
@@ -77,4 +34,4 @@ function App() {
  * 1.React: Rethinking best practice by Pete Hunt (JSConf EU 2013)
  * https://www.youtube.com/watch?v=x7cQ3mrcKaY 
  **/
-ReactDOM.render(<App/>, document.getElementById('root') );
+//ReactDOM.render(<App/>, document.getElementById('root') );
