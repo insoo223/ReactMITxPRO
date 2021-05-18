@@ -1,4 +1,4 @@
-/** React Docs-State and Lifecycle:tick() Reusable Trial 1-class
+/** React Docs-State and Lifecycle:tick() Reusable Trial 3-state
  * Ref: https://reactjs.org/docs/state-and-lifecycle.html
  */
 //리액트 문서오브젝트모델(react-dom)이 렌더링 엔진 모듈
@@ -16,25 +16,44 @@ function Clock(props) {
 }//Clock
 */
 
-//class component for Clock
+//class component for Clock using state
 class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }//constructor
+
+  componentDidMount() {
+    this.timerID = setInterval //timerID는 임의로 붙인 속성
+    //this.aaa = setInterval  //따라서, aaa도 가능.
+    ( () =>
+      this.tick(), 1000
+    );//setInterval
+  }//componentDidMount
+
+  componentWillUnmount() {
+    clearInterval(this.timerID)
+    //clearInterval(this.aaa)
+  }//componentWillUnmount
+
+  tick() {
+    this.setState
+    ( 
+      {
+        date: new Date() // 세미콜론(;) 넣으면 안됨. 쉼표 가능
+      }
+    );//setState
+  }//tick
+
   render() {
     return(
       <div>
         <h1>Hello,Insoo!</h1>
-        <h2>It is {this.props.date.toLocaleTimeString()}</h2>
+        <h2>It is {this.state.date.toLocaleTimeString()}</h2>
       </div>
     );//return
   }//render
 }//Clock
-
-function tick() {
-  //ReactDOM.render(element, document.getElementById('root'));
-  ReactDOM.render(<Clock date={new Date()}/>, document.getElementById('root'));
-};//tick
-
-setInterval(tick, 1000);
-
 
 /** ReactDOM()은 React element의 변화된 부분만 인식해서 새로운 React element를 생성, 갱신
  * 요약: 
@@ -48,4 +67,4 @@ setInterval(tick, 1000);
  * 1.React: Rethinking best practice by Pete Hunt (JSConf EU 2013)
  * https://www.youtube.com/watch?v=x7cQ3mrcKaY 
  **/
-//ReactDOM.render(<App/>, document.getElementById('root') );
+ReactDOM.render(<Clock/>, document.getElementById('root') );
