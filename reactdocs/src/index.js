@@ -20,12 +20,14 @@ function Clock(props) {
 class Clock extends React.Component {
   constructor(props) {
     super(props);
+    //필요한 상태는 "생성자"에서 선언된다.
     this.state = {date: new Date()};
   }//constructor
 
+  //생성자와 ReactDOM.render()이후 3번째로 실행
   componentDidMount() {
+    //매 초 틱함수 호출
     this.timerID = setInterval //timerID는 임의로 붙인 속성
-    //this.aaa = setInterval  //따라서, aaa도 가능.
     ( () =>
       this.tick(), 1000
     );//setInterval
@@ -33,9 +35,10 @@ class Clock extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.timerID)
-    //clearInterval(this.aaa)
   }//componentWillUnmount
 
+  //틱 함수는 상태설정(setState)을 통해 date 상태 갱신
+  //상태갱신되면 리액트 돔은 자동으로 렌더링 즉, 렌더러 자동 호출 
   tick() {
     this.setState
     ( 
