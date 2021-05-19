@@ -1,5 +1,5 @@
-/** React Docs-Conditional Rendering: Success code, Welcome msg & button 
- * Ref: https://reactjs.org/docs/conditional-rendering.html I don't know why make an error as of May19, 2021.
+/** React Docs-Conditional Rendering: Success code w/bind, Welcome msg & button 
+ * Ref: https://reactjs.org/docs/conditional-rendering.html 
  */
 //리액트 문서오브젝트모델(react-dom)이 렌더링 엔진 모듈
 import React from 'react';
@@ -25,6 +25,8 @@ class LoginCtrl extends React.Component
     )
   }//handleLoginClick
   */
+  
+  //bind at contructor required
   handleLoginClick()
   {
     this.setState
@@ -42,6 +44,8 @@ class LoginCtrl extends React.Component
     )
   }//handleLogoutClick
   */
+ 
+  //bind at contructor required
   handleLogoutClick()
   {
     this.setState
