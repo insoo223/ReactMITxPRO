@@ -1,4 +1,4 @@
-/** React Docs-Handling Events: error by Not binding event handler
+/** React Docs-Handling Events: Free-to-Bind event handler
  * Ref: https://reactjs.org/docs/handling-events.html
  */
 //리액트 문서오브젝트모델(react-dom)이 렌더링 엔진 모듈
@@ -13,6 +13,8 @@ class Toggle extends React.Component {
     this.state = {isToggleOn: true};
     
     //여기에 이벤트핸들러 등록(바인딩) 필요!
+    //this.handleClick = this.handleClick.bind(this);
+    //바인딩하기 귀찮으면, 이벤트핸들러를 화살표 함수로!
   }//constructor
 
   //생성자와 ReactDOM.render()이후 3번째로 실행
@@ -25,6 +27,7 @@ class Toggle extends React.Component {
   //틱 함수는 상태설정(setState)을 통해 date 상태 갱신
   //상태갱신되면 리액트 돔은 자동으로 렌더링 즉, 렌더러 자동 호출 
   //이벤트핸들러가 생성자에 바인딩 되지 않으면 타입에러 발생. this를 알지 못함.
+  /*--- 생성자에 등록(바인딩) 필요.
   handleClick() {
     this.setState 
     (state => 
@@ -32,7 +35,15 @@ class Toggle extends React.Component {
         {isToggleOn: !state.isToggleOn} // 세미콜론(;) 넣으면 안됨. 쉼표 가능      
       )
     )
-  }//handleClick
+  }//handleClick (should bind)
+  */
+  
+  //--- 생성자에 등록(바인딩) 필요 없음.
+  handleClick = () =>
+  {
+    this.setState({isToggleOn: !this.state.isToggleOn});
+  }//handleClick (free to bind)
+
 
   render() {
     return(
