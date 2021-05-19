@@ -1,4 +1,4 @@
-import {LoginButton, LogoutButton} from './logButtons';
+//import {LoginButton, LogoutButton} from './logButtons';
 
 function UserGreeting (props)
 {
@@ -10,7 +10,7 @@ function GuestGreeting (props)
   return <h1>Please sign up.</h1>;
 }//GuestGreeting
 
-export default function Greeting (props)
+export function Greeting (props)
 {
   const logState = props.isLoggedIn;
   if (logState)

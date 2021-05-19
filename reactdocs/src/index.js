@@ -1,22 +1,20 @@
-/** React Docs-Conditional Rendering: Success code w/bind, Welcome msg & button 
+/** React Docs-Conditional Rendering: Success code wo/bind & Sign Up button
  * Ref: https://reactjs.org/docs/conditional-rendering.html 
  */
 //리액트 문서오브젝트모델(react-dom)이 렌더링 엔진 모듈
 import React from 'react';
 import ReactDOM from 'react-dom'; 
-import Greeting from './greeting'
-import {LoginButton, LogoutButton} from './logButtons';
+import {Greeting} from './greeting' 
+import {SignUpButton, LogoutButton} from './logButtons';
 class LoginCtrl extends React.Component
 {
   constructor(props)
   {
     super(props);
-    this.handleLoginClick = this.handleLoginClick.bind(this);
-    this.handleLogoutClick = this.handleLogoutClick.bind(this);
     this.state = {isLoggedIn: false};
   }//constructor
 
-  /*
+  //NO bind required
   handleLoginClick = () =>
   {
     this.setState
@@ -24,18 +22,8 @@ class LoginCtrl extends React.Component
       {isLoggedIn: true}
     )
   }//handleLoginClick
-  */
   
-  //bind at contructor required
-  handleLoginClick()
-  {
-    this.setState
-    ( 
-      {isLoggedIn: true}
-    )
-  }//handleLoginClick
-
-  /*
+  //NO bind required
   handleLogoutClick = () =>
   {
     this.setState
@@ -43,17 +31,7 @@ class LoginCtrl extends React.Component
       {isLoggedIn: false}
     )
   }//handleLogoutClick
-  */
  
-  //bind at contructor required
-  handleLogoutClick()
-  {
-    this.setState
-    ( 
-      {isLoggedIn: false}
-    )
-  }//handleLogoutClick
-
   render()  
   {
     const curLogState = this.state.isLoggedIn;
@@ -61,7 +39,7 @@ class LoginCtrl extends React.Component
     if (curLogState)
       button = <LogoutButton onClick={this.handleLogoutClick}/>;
     else
-      button = <LoginButton onClick={this.handleLoginClick}/>;
+      button = <SignUpButton onClick={this.handleLoginClick}/>;
     
     return (
       <div>
