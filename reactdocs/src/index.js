@@ -14,7 +14,7 @@ class Toggle extends React.Component {
     
     //여기에 이벤트핸들러 등록(바인딩) 필요!
     //this.handleClick = this.handleClick.bind(this);
-    //바인딩하기 귀찮으면, 이벤트핸들러를 화살표 함수로!
+    //바인딩하기 귀찮으면, 이벤트핸들러를 공백 괄호 화살표 함수로!
   }//constructor
 
   //생성자와 ReactDOM.render()이후 3번째로 실행
@@ -36,18 +36,18 @@ class Toggle extends React.Component {
       )
     )
   }//handleClick (should bind)
-  */
   
-  //--- 생성자에 등록(바인딩) 필요 없음.
+  /*--- 생성자에 등록(바인딩) 필요 없음.
   handleClick = () =>
   {
     this.setState({isToggleOn: !this.state.isToggleOn});
   }//handleClick (free to bind)
-
+  */
 
   render() {
     return(
-      <button onClick={this.handleClick}>
+      //<button onClick={this.handleClick}>
+      <button onClick={() => this.handleClick()}>
         {this.state.isToggleOn ? "On" : "Off"}
       </button>
     );//return
