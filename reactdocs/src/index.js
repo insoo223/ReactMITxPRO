@@ -1,5 +1,5 @@
-/** React Docs-Conditional Rendering: Welcome msg per user type
- * Ref: https://reactjs.org/docs/conditional-rendering.html
+/** React Docs-Conditional Rendering: Error code, Welcome msg per user type
+ * Ref: https://reactjs.org/docs/conditional-rendering.html I don't know why make an error as of May19, 2021.
  */
 //리액트 문서오브젝트모델(react-dom)이 렌더링 엔진 모듈
 import React from 'react';
@@ -17,11 +17,74 @@ function GuestGreeting (props)
 
 function Greeting (props)
 {
-  const isLoggedIn = props.isLoggedIn;
-  if (isLoggedIn)
+  const logState = props.isLoggedIn;
+  if (logState)
     { return <UserGreeting/>; }
   else  
     { return <GuestGreeting/>; }
 }//Greeting
 
-ReactDOM.render(<Greeting isLoggedIn={false}/>, document.getElementById('root') );
+function LoginButton (props)
+{
+  return
+  (
+    <button onClick={props.onClick}>
+      Login
+    </button>
+  )
+}//LoginButton
+
+function LogoutButton (props)
+{
+  return
+  (
+    <button onClick={props.onClick}>
+      Logout
+    </button>
+  )
+}//LogoutButton
+
+class LoginCtrl extends React.Component
+{
+  constructor(props)
+  {
+    super(props);
+    this.state = {isLoggedIn: false};
+  }//constructor
+
+  handleLoginClick = () =>
+  {
+    this.setState
+    ( 
+      {isLoggedIn: true}
+    )
+  }//handleLoginClick
+
+  handleLogoutClick = () =>
+  {
+    this.setState
+    ( 
+      {isLoggedIn: false}
+    )
+  }//handleLogoutClick
+
+  render()  
+  {
+    const curLogState = this.state.isLoggedIn;
+    let button;
+    if (curLogState)
+      button = <LogoutButton onClick={this.handleLogoutClick}/>;
+    else
+      button = <LoginButton onClick={this.handleLoginClick}/>;
+    
+    return
+    (
+      <div>
+        <Greeting isLoggedIn={curLogState}/>
+        {button}
+      </div>
+    )//return
+  }//render
+}//LoginCtrl
+
+ReactDOM.render(<LoginCtrl />, document.getElementById('root') );
