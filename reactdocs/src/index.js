@@ -4,7 +4,6 @@
 //리액트 문서오브젝트모델(react-dom)이 렌더링 엔진 모듈
 import React from 'react';
 import ReactDOM from 'react-dom'; 
-//import {useState} from 
 
 //class component for Toggle using state
 class Toggle extends React.Component {
@@ -12,6 +11,8 @@ class Toggle extends React.Component {
     super(props);
     //필요한 상태는 "생성자"에서 선언된다.
     this.state = {isToggleOn: true};
+    
+    //여기에 이벤트핸들러 등록(바인딩) 필요!
   }//constructor
 
   //생성자와 ReactDOM.render()이후 3번째로 실행
@@ -25,7 +26,9 @@ class Toggle extends React.Component {
   //상태갱신되면 리액트 돔은 자동으로 렌더링 즉, 렌더러 자동 호출 
   //이벤트핸들러가 생성자에 바인딩 되지 않으면 타입에러 발생. this를 알지 못함.
   handleClick() {
-    this.setState (state => (
+    this.setState 
+    (state => 
+      (
         {isToggleOn: !state.isToggleOn} // 세미콜론(;) 넣으면 안됨. 쉼표 가능      
       )
     )
@@ -60,4 +63,4 @@ function App() {
  * 1.React: Rethinking best practice by Pete Hunt (JSConf EU 2013)
  * https://www.youtube.com/watch?v=x7cQ3mrcKaY 
  **/
-ReactDOM.render(<Toggle/>, document.getElementById('root') );
+ReactDOM.render(<App/>, document.getElementById('root') );
