@@ -6,8 +6,9 @@ import ReactDOM from 'react-dom'
 
 const Square = ({id}) => {
   return (
-    <button type="button">
-      <h1>{id}</h1>
+    <button type="button" 
+      onClick={e => e.target.style.background = "red"}>
+        <h1>{id}</h1>
     </button>
   ); //return
 }//Square
