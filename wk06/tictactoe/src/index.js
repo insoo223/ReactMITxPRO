@@ -4,13 +4,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-const palet = ["red", "green", "blue"];
-const getRandomColor = () => palet[Math.floor(Math.random()*3)];
 
 const Square = ({id}) => {
+  const [color, setColor] = React.useState('green');
+  const palet = ["red", "green", "blue"];
+  const getRandomColor = () => palet[Math.floor(Math.random()*3)];
+
   return (
     <button type="button" 
-      onClick={e => e.target.style.background = getRandomColor()}>
+      onClick={ e => 
+        {
+          setColor(getRandomColor());
+          e.target.style.background = color;
+        }
+      }
+    >
         <h1>{id}</h1>
     </button>
   ); //return
