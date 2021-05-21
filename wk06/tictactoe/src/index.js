@@ -1,18 +1,18 @@
-/*** 4.1	Add Squares As Child Components
- * Ref: https://student.emeritus.org/courses/2663/pages/video-6-3-6-4-15-35-generate-players-on-the-tic-tac-toe-board-and-control-component-with-onclick-events?module_item_id=582137
+/*** 4.2	Pass ID As State From Parent To Child: props.id
+ * Ref: https://student.emeritus.org/courses/2663/pages/video-6-5-6-6-7-35-add-squares-as-child-components-and-pass-id-as-state-from-parent-to-child?module_item_id=582139
  */
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-const Square = () => {
-  return <button type="button"></button>; //return
+const Square = (props) => {
+  return <button type="button">{props.id}</button>; //return
 }//Square
 
 const Board = () => {
   const [player, setPlayer] = React.useState(1);
   let status = `Player ${player}`;
   function renderSquare (i) {
-    return <Square></Square>;
+    return <Square id={i}></Square>;
   }
   return (
     <div className="game-board" >
