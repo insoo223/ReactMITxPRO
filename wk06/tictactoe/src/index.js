@@ -1,5 +1,5 @@
-/*** 4.2	Pass ID As State From Parent To Child: only id wo/props
- * Ref: https://student.emeritus.org/courses/2663/pages/video-6-5-6-6-7-35-add-squares-as-child-components-and-pass-id-as-state-from-parent-to-child?module_item_id=582139
+/*** 5 Change Color Of Square And Track State: blue 2 red
+ * Ref: https://student.emeritus.org/courses/2663/pages/video-6-7-10-09-change-color-of-square-and-track-state?module_item_id=582140
  */
 import React from 'react'
 import ReactDOM from 'react-dom'
