@@ -1,11 +1,11 @@
-/*** 12 Parent And Child Re-render: Template code
+/*** 12 Parent And Child Re-render: Solution code - click to Child component also re-render parent component.
  * Ref: https://student.emeritus.org/courses/2663/assignments/107299?module_item_id=582148
  */
  import React from 'react'
  import ReactDOM from 'react-dom'
  
 // notice properties takeTurn and id are being passed in
-const Square = ({ takeTurn, id, player }) => {
+const Square = ({takeTurn, id, player }) => {
   console.log('Square re-rendering now.');
   const palet = ["blue", "red", "green"];
   // id is the square's number
@@ -23,13 +23,14 @@ const Square = ({ takeTurn, id, player }) => {
     <button
       id={id}
       onClick={(e) => {
-        setColor(innerTakeTurn(id));
+        //setColor(innerTakeTurn(id));
+        setColor(takeTurn(id));
         e.preventDefault();
         e.target.style.background = palet[color];
       }}
     ></button>
   );
-};
+};//Square
 
 const Board = () => {
   // 1st player is 1
@@ -64,7 +65,7 @@ const Board = () => {
       </div>
     </div>
   );
-};
+};//Board
 
 const Game = () => {
   return (
