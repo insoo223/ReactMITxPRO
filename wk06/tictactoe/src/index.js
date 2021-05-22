@@ -1,5 +1,5 @@
-/*** 10 Mounting And Unmounting Square Components: Template code, Show/Hide Individual Square Button
- * Ref: https://student.emeritus.org/courses/2663/assignments/107298?module_item_id=582146
+/*** 10 Mounting And Unmounting Square Components: Solution code, Show/Hide Individual Square Button 
+ * Ref: But when unmounting only right to left direcion order. Not independent order unmounting! https://student.emeritus.org/courses/2663/assignments/107298?module_item_id=582146 
  */
  import React from 'react'
  import ReactDOM from 'react-dom'
@@ -14,8 +14,11 @@
   const [tik, setTik] = React.useState(2);
 
   // Step 1: Move the mounted state & toggle from the board component to here
-
+  const [mounted, setMounted] = React.useState(true);
+  const toggle = () => setMounted(!mounted);
+  
   // Step 2: Check to see if the mounted state is false. If it is we want to return null instead of returning the button
+  if (!mounted) return null;
 
   return (
     // Step 3: Trigger toggle() when button is clicked
@@ -23,6 +26,7 @@
       // DO NOT DELETE THIS id
       id={`square-button-${id}`}
       onClick={() => {
+        toggle();
         setTik(takeTurn(id));
         setFilled(true);
       }}
@@ -30,7 +34,7 @@
       <h1>{mark[tik]}</h1>
     </button>
   );
-};
+};//Square
 
 const Board = () => {
   // 1st player is X ie 1
@@ -40,6 +44,7 @@ const Board = () => {
   const [gameState, setGameState] = React.useState([]);
 
   const toggle = () => setMounted(!mounted);
+  const status = `Palyer: ${player}`
 
   const takeTurn = (id) => {
     setGameState([...gameState, { id: id, player: player }]);
@@ -48,7 +53,7 @@ const Board = () => {
   };
   function renderSquare(i) {
     // use properties to pass callback function takeTurn to Child
-    return <Square takeTurn={takeTurn} id={i}></Square>;
+    return <Square takeTurn={takeTurn} id={i} mounted={mounted}></Square>;
   }
 
   return (
@@ -64,7 +69,7 @@ const Board = () => {
       </div>
     </div>
   );
-};
+};//Board
 
 const Game = () => {
   return (
@@ -72,7 +77,7 @@ const Game = () => {
       <Board></Board>
     </div>
   );
-};
+};//Game
 
 // ========================================
 
