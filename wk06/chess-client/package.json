@@ -1,0 +1,52 @@
+{
+    "name": "chess",
+    "version": "1.1.12",
+    "description": "♞ Mobile-first Chess in JavaScript.",
+    "main": "index.js",
+    "scripts": {
+        "start": "npm run network-info; webpack-dev-server",
+        "build": "webpack --mode production",
+        "preversion": "npm run test:verbose",
+        "postversion": "npm run build && npm run docs && git add . && git commit -m 'New build' && git push",
+        "test": "jest",
+        "test:verbose": "jest --expand",
+        "docs": "documentation build src/models/GameState.js -f html -o doc --theme ./node_modules/documentation-theme-light/default_theme",
+        "docs:watch": "documentation serve --watch src/models/GameState.js --theme ./node_modules/documentation-theme-light/default_theme",
+        "network-info": "echo \"ℹ ｢wds｣ Running on local network at http:/\" | tr \"\n\" \"/\"; ifconfig | grep \"inet \" | grep -Fv 127.0.0.1 | awk '{print $2}'",
+        "board": "node src/lib/visualizeBoardScript",
+        "id": "node src/lib/generateId"
+    },
+    "author": "Yves Gurcan",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yvesgurcan/chess-client"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.8.7",
+        "@babel/plugin-proposal-class-properties": "^7.8.3",
+        "@babel/plugin-transform-runtime": "^7.8.3",
+        "@babel/preset-env": "^7.8.7",
+        "@babel/preset-react": "^7.8.3",
+        "babel-loader": "^8.1.0",
+        "babel-plugin-styled-components": "^1.10.7",
+        "clean-webpack-plugin": "^3.0.0",
+        "documentation": "^12.1.4",
+        "documentation-theme-light": "^1.1.1",
+        "html-webpack-plugin": "^3.2.0",
+        "jest": "^25.1.0",
+        "jest-diff": "^25.1.0",
+        "moment": "^2.24.0",
+        "moment-duration-format": "^2.3.2",
+        "react": "^16.13.0",
+        "react-dom": "^16.13.0",
+        "react-router": "5.1.2",
+        "react-router-dom": "5.1.2",
+        "styled-components": "^5.0.1",
+        "uuid": "^7.0.2",
+        "webpack": "^4.42.0",
+        "webpack-cli": "^3.3.11",
+        "webpack-dev-server": "^3.10.3",
+        "workbox-webpack-plugin": "^5.1.3"
+    }
+}
