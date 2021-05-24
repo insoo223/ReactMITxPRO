@@ -6,7 +6,7 @@
  import {checkWinner} from './winner'
 
  //Child
- const Square = ({id, newState}) => {
+ const Square = ({id, player, newState}) => {
    const [color, setColor] = React.useState('green');
    const [status, setStatus] = React.useState(null);
    const xo = ["O", "X"];
@@ -21,6 +21,7 @@
    )
    */
  
+   //keep track of state of the Square 
    return (
      <button type="button" 
        onClick={ e => 
@@ -78,6 +79,7 @@
    */
    const newState = idOfSquare =>
    {
+    let thePlayer = player;
     state[idOfSquare] = player; //player is present player
     setState(state); //state is array of 0 or 1 or null
     let nextPlayer = (player+1)%2;
@@ -86,7 +88,7 @@
     //console.log(`adding state ${JSON.stringify(state)}`);
     //status = `Player ${nextPlayer}`;
     //return nextPlayer;
-    return player;
+    return thePlayer; // we need to return the present player
    }//newState
 
    function renderSquare (i) {
