@@ -1,80 +1,64 @@
-/*** 12 Parent And Child Re-render: Solution code - click to Child component also re-render parent component.
- * Ref: https://student.emeritus.org/courses/2663/assignments/107299?module_item_id=582148
+/*** 16 UseState Delay: asynchronous update of useState
+ * Ref: https://student.emeritus.org/courses/2663/pages/video-6-12-3-47-usestate-delay?module_item_id=582152
  */
  import React from 'react'
  import ReactDOM from 'react-dom'
  
-// notice properties takeTurn and id are being passed in
-const Square = ({takeTurn, id, player }) => {
-  console.log('Square re-rendering now.');
-  const palet = ["blue", "red", "green"];
-  // id is the square's number
-  // We call takeTurn to tell Parent we have clicked in this square
 
-  const [color, setColor] = React.useState(2);
+ //Child
+ const Square = ({id, player}) => {
 
-  // function that takes the player as a parameter and then uses it in the calculation to setColor
-  // but does NOT update the player held in the state of the Board component
-  const innerTakeTurn = (id) => {
-    return ((player + 1) % 2);
-  };
+   const [color, setColor] = React.useState('green');
+   const palet = ["red", "green", "blue"];
+   const getRandomColor = () => palet[Math.floor(Math.random()*3)];
+   React.useEffect( () => 
+    {
+      console.log(`Render ${id}`);
+      return () => console.log(`unmounting Square ${id}`);
+    }
+   )
+ 
+   return (
+     <button type="button" 
+       onClick={ e => 
+         {
+           let col = getRandomColor();
+           setColor(col);
+           e.target.style.background = color;
+           //alert(`I'm Square ${id}`);
+         }
+       }
+     >
+         <h1>{id}</h1>
+     </button>
+   ); //return
+ }//Square
+ 
+ //Parent
+ const Board = () => {
+   const [player, setPlayer] = React.useState(1);
+   let status = `Player ${player}`;
+   const [mounted, setMounted] = React.useState(true);
 
-  return (
-    <button
-      id={id}
-      onClick={(e) => {
-        //setColor(innerTakeTurn(id));
-        setColor(takeTurn(id));
-        e.preventDefault();
-        e.target.style.background = palet[color];
-      }}
-    ></button>
-  );
-};//Square
-
-const Board = () => {
-  // 1st player is 1
-  // State keeps track of next player
-  const [player, setPlayer] = React.useState(1);
-  console.log('Board re-rendering now.');
-
-  // check for winner (see superset.js)
-  let status = `Player ${player}`;
-  console.log(`Status Player ${status}`);
-
-  // Note that Child (Square Component) calls this function
-  // However the function has access to the player held here
-  const takeTurn = (id) => {
-    setPlayer((player + 1) % 2); // get next player
-    return player;
-  };
-  function renderSquare(i, color) {
-    // use properties to pass callback function takeTurn to Child
-    return <Square takeTurn={takeTurn} id={i} player={player}></Square>;
-  }
-  return (
-    <div className="game-board">
-      <div className="grid-row">
-        {renderSquare(0)}
-        {renderSquare(1)}
-        {renderSquare(2)}
-      </div>
-      <div id="info">
-        <h1>{status}</h1>
-        <button onClick={() => takeTurn()}> Change Player</button>
-      </div>
-    </div>
-  );
-};//Board
-
-const Game = () => {
-  return (
-    <div className="game">
-      <Board></Board>
-    </div>
-  );
-};
-
-// ========================================
-
-ReactDOM.render(<Game />, document.getElementById("root"));
+   const toggle = () => setMounted(!mounted);
+   function renderSquare (i) {
+     return <Square id={i} player={player}></Square>;
+   }
+   return (
+     <div className="game-board" >
+       <div className="grid-row">
+         {mounted && renderSquare(0)}
+         {mounted && renderSquare(1)}
+         {mounted && renderSquare(2)}
+       </div>
+       <div>
+         <button onClick={toggle}>Show/Hide Row</button>
+       </div>
+       <div id="info">
+         <h1>{status}</h1>
+       </div>
+     </div>
+   )//return
+ }//Board
+ 
+ ReactDOM.render(<Board />, document.getElementById('root'));
