@@ -1,5 +1,5 @@
-/*** 20 Improving The Tic-Tac-Toe Game: 3rd trial finally passed.
- * Ref: I have read the task instruction carefully, i found the <h1> tage should have id of "turn"! https://student.emeritus.org/courses/2663/assignments/107295?module_item_id=582156
+/*** 20 Improving The Tic-Tac-Toe Game: Part2 red for X & white for O 
+ * Ref:(Styles added at index.html) https://student.emeritus.org/courses/2663/assignments/107295?module_item_id=582156
  */
  import React from 'react'
  import ReactDOM from 'react-dom'
@@ -14,7 +14,7 @@
 
   // Part 1 step 1 code goes here
   // Use conditional logic to set a variable to either 'Player O' or  'Player X'
-    let strNextPlayer = `Next Player: ${player ? 'Player X' : 'Player O'}`;
+  let strNextPlayer = `Next Player: ${player ? 'Player X' : 'Player O'}`;
 
   console.log(`We hav a winner ${status}`);
 
@@ -70,6 +70,7 @@ const Square = ({ takeTurn, id }) => {
   return (
     <button
       // Part 2: update the return statement below to add css classes
+      className={tik == '1' ? 'red' : 'white'}
       onClick={() => {
         setTik(takeTurn(id));
         setFilled(true);
