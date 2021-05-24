@@ -12,12 +12,14 @@
    const xo = ["O", "X"];
    const palet = ["red", "green", "blue"];
    const getRandomColor = () => palet[Math.floor(Math.random()*3)];
+   /*
    React.useEffect( () => 
     {
       console.log(`Render ${id}`);
       return () => console.log(`unmounting Square ${id}`);
     }
    )
+   */
  
    return (
      <button type="button" 
@@ -38,11 +40,24 @@
  
  //Parent
  const Board = () => {
-   const [player, setPlayer] = React.useState(1);
-   const [state, setState] = React.useState([]);
+   //player O or X  
+   const [player, setPlayer] = React.useState(1); 
+   
+   /*** array of states
+    * state is an object comprised w/id and color
+    ***/ 
+   const [state, setState] = React.useState([]); 
+   
+   //current player
    let status = `Player ${player}`;
+   
+   //component's mounting state
    const [mounted, setMounted] = React.useState(true);
+
+   //toggle a component's mounting state
    const toggle = () => setMounted(!mounted);
+
+   //way to communicate w/child
    const newState = ob =>
    {
      let nextPlayer = (player+1)%2;
