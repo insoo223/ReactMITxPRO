@@ -54,10 +54,10 @@
    let winner = checkWinner(state);
    if (winner != null) 
    {
-     status = `Palyer ${winner} wins!`
+     status = `Player ${winner} wins!`
    }
 
-   
+
    //component's mounting state
    const [mounted, setMounted] = React.useState(true);
 
