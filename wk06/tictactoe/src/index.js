@@ -1,5 +1,5 @@
-/*** 17.1 Passing Player From Parent To Child
- * Ref: https://student.emeritus.org/courses/2663/pages/video-6-13-6-14-14-51-passing-player-from-parent-to-child-and-tracking-total-game-state?module_item_id=582153
+/*** 17.2 Tracking Total Game State
+ * Ref:  Already put newState to Body so that nearly same with Ch17.1 code. https://student.emeritus.org/courses/2663/pages/video-6-13-6-14-14-51-passing-player-from-parent-to-child-and-tracking-total-game-state?module_item_id=582153
  */
  import React from 'react'
  import ReactDOM from 'react-dom'
@@ -43,7 +43,7 @@
    //player O or X  
    const [player, setPlayer] = React.useState(1); 
    
-   /*** array of states
+   /*** array of states = total states of a game
     * state is an object comprised w/id and color
     ***/ 
    const [state, setState] = React.useState([]); 
