@@ -1,11 +1,4 @@
-/*** 20 Improving The Tic-Tac-Toe Game: 2nd trial also seems fine, but not passed.
- * Ref: https://student.emeritus.org/courses/2663/assignments/107295?module_item_id=582156
- */
- import React from 'react'
- import ReactDOM from 'react-dom'
-
- //Parent
- const Board = () => {
+const Board = () => {
   // 1st player is X ie 1
   // State keeps track of next player and gameState
   const [player, setPlayer] = React.useState(1);
@@ -14,9 +7,7 @@
 
   // Part 1 step 1 code goes here
   // Use conditional logic to set a variable to either 'Player O' or  'Player X'
-  //let nextPlayer = (player + 1) % 2;
-  //let strNextPlayer = player ? 'Player X' : 'Player O';
-  let strNextPlayer = `Next Player: ${player ? 'Player X' : 'Player O'}`;
+  let playerTurn = `Next Player: ${player == '0' ? 'Player O' : 'Player X'}`;
 
   console.log(`We hav a winner ${status}`);
 
@@ -48,18 +39,13 @@
         {renderSquare(8)}
       </div>
       <div id="info">
-        {/* 
-          Part 1 step 2 code goes here 
-          Display the player's turn <h1>
-        */}
-        <h1>{strNextPlayer}</h1>
-        <h1 >{status}</h1>
+        <h1 id="turn">{playerTurn}</h1>
+        <h1>{status}</h1>
       </div>
     </div>
-  );//return
-};//Board
+  );
+};
 
-//Child
 const Square = ({ takeTurn, id }) => {
   const mark = ['O', 'X', '+'];
   // id is the square's number
@@ -72,6 +58,7 @@ const Square = ({ takeTurn, id }) => {
   return (
     <button
       // Part 2: update the return statement below to add css classes
+      className={tik == '1' ? 'red' : 'white'}
       onClick={() => {
         setTik(takeTurn(id));
         setFilled(true);
@@ -80,8 +67,8 @@ const Square = ({ takeTurn, id }) => {
     >
       <h1>{mark[tik]}</h1>
     </button>
-  );//return
-};//Square
+  );
+};
 
 const Game = () => {
   return (
@@ -94,7 +81,7 @@ const Game = () => {
 // Checking for Winner takes a bit of work
 // Use JavaScript Sets to check players choices
 // against winning combinations
-// Online there is more compact version but Dr. Williams prefers this one
+// Online there is more compact version but I prefer this one
 
 const win = [
   // rows
