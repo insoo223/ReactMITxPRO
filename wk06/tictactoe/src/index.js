@@ -1,5 +1,5 @@
-/*** 20 Improving The Tic-Tac-Toe Game: 2nd trial also seems fine, but not passed.
- * Ref: https://student.emeritus.org/courses/2663/assignments/107295?module_item_id=582156
+/*** 20 Improving The Tic-Tac-Toe Game: 3rd trial finally passed.
+ * Ref: I have read the task instruction carefully, i found the <h1> tage should have id of "turn"! https://student.emeritus.org/courses/2663/assignments/107295?module_item_id=582156
  */
  import React from 'react'
  import ReactDOM from 'react-dom'
@@ -14,9 +14,7 @@
 
   // Part 1 step 1 code goes here
   // Use conditional logic to set a variable to either 'Player O' or  'Player X'
-  //let nextPlayer = (player + 1) % 2;
-  //let strNextPlayer = player ? 'Player X' : 'Player O';
-  let strNextPlayer = `Next Player: ${player ? 'Player X' : 'Player O'}`;
+    let strNextPlayer = `Next Player: ${player ? 'Player X' : 'Player O'}`;
 
   console.log(`We hav a winner ${status}`);
 
@@ -52,7 +50,7 @@
           Part 1 step 2 code goes here 
           Display the player's turn <h1>
         */}
-        <h1>{strNextPlayer}</h1>
+        <h1 id="turn">{strNextPlayer}</h1>
         <h1 >{status}</h1>
       </div>
     </div>
