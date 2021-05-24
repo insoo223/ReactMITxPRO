@@ -1,9 +1,9 @@
-/*** 17.2 Tracking Total Game State
- * Ref:  Already put newState to Body so that nearly same with Ch17.1 code. https://student.emeritus.org/courses/2663/pages/video-6-13-6-14-14-51-passing-player-from-parent-to-child-and-tracking-total-game-state?module_item_id=582153
+/*** 19 Tic-Tac-Toe Final Refactor: (Limitation) Only can check winner for player 1
+ * Ref: https://student.emeritus.org/courses/2663/pages/video-6-15-12-52-tic-tac-toe-final-refactor?module_item_id=582155 
  */
  import React from 'react'
  import ReactDOM from 'react-dom'
- 
+ import {checkWinner} from './winner'
 
  //Child
  const Square = ({id, newState}) => {
@@ -27,7 +27,8 @@
          {
            let col = getRandomColor();
            setColor(col);
-           let nextPlayer = newState({id:id, color:col});
+           //let nextPlayer = newState({id:id, color:col});
+           let nextPlayer = newState(id);
            setStatus(nextPlayer);
            e.target.style.background = col;
          }
@@ -46,10 +47,16 @@
    /*** array of states = total states of a game
     * state is an object comprised w/id and color
     ***/ 
-   const [state, setState] = React.useState([]); 
+   const [state, setState] = React.useState(Array(9).fill(null)); 
    
    //current player
    let status = `Player ${player}`;
+   let winner = checkWinner(state);
+   if (winner != null) 
+   {
+     status = `Palyer ${winner} wins!`
+   }
+
    
    //component's mounting state
    const [mounted, setMounted] = React.useState(true);
@@ -58,6 +65,7 @@
    const toggle = () => setMounted(!mounted);
 
    //way to communicate w/child
+   /*
    const newState = ob =>
    {
      let nextPlayer = (player+1)%2;
@@ -66,6 +74,19 @@
      console.log(`adding state ${JSON.stringify(state)}`);
      status = `Player ${nextPlayer}`;
      return nextPlayer;
+   }//newState
+   */
+   const newState = idOfSquare =>
+   {
+    state[idOfSquare] = player; //player is present player
+    setState(state); //state is array of 0 or 1 or null
+    let nextPlayer = (player+1)%2;
+    setPlayer(nextPlayer);
+    //setState([...state, ob]);
+    //console.log(`adding state ${JSON.stringify(state)}`);
+    //status = `Player ${nextPlayer}`;
+    //return nextPlayer;
+    return player;
    }//newState
 
    function renderSquare (i) {
@@ -78,8 +99,19 @@
          {mounted && renderSquare(1)}
          {mounted && renderSquare(2)}
        </div>
+       <div className="grid-row">
+         {mounted && renderSquare(3)}
+         {mounted && renderSquare(4)}
+         {mounted && renderSquare(5)}
+       </div>
+       <div className="grid-row">
+         {mounted && renderSquare(6)}
+         {mounted && renderSquare(7)}
+         {mounted && renderSquare(8)}
+       </div>
        <div>
          <button onClick={toggle}>Show/Hide Row</button>
+         <h1>{status}</h1>
        </div>
        <div id="info">
          <h1>{status}</h1>
