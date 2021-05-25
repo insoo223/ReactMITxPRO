@@ -1,5 +1,5 @@
-/*** 20 Improving The Tic-Tac-Toe Game: Part2 red for X & white for O 
- * Ref:(Styles added at index.html) https://student.emeritus.org/courses/2663/assignments/107295?module_item_id=582156
+/*** 23 Improving The Tic-Tac-Toe Game: More obvious way for takeTurn function component
+ * Ref: https://student.emeritus.org/courses/2663/assignments/107295?module_item_id=582156
  */
  import React from 'react'
  import ReactDOM from 'react-dom'
@@ -19,10 +19,12 @@
   console.log(`We hav a winner ${status}`);
 
   const takeTurn = (id) => {
-    setGameState([...gameState, { id: id, player: player }]);
-    setPlayer((player + 1) % 2); // get next player
-    return player;
-  };
+    let curPlayer = player;
+    setGameState([...gameState, { id: id, player: curPlayer }]);
+    setPlayer((curPlayer + 1) % 2); // get next player
+    return curPlayer;
+  };//takeTurn
+
   function renderSquare(i) {
     // use properties to pass callback function takeTurn to Child
     return <Square takeTurn={takeTurn} id={i}></Square>;
@@ -88,7 +90,7 @@ const Game = () => {
       <Board></Board>
     </div>
   );
-};
+};//Game
 
 // Checking for Winner takes a bit of work
 // Use JavaScript Sets to check players choices
