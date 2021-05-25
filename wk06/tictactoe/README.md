@@ -2,6 +2,7 @@
 
 # How to run
 npm i
+
 npm start
 
 ## Roadmap of Future Improvements
