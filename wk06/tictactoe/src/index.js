@@ -18,6 +18,7 @@
 
   console.log(`We hav a winner ${status}`);
 
+  //more obvious way than utilize implicit useState delay
   const takeTurn = (id) => {
     let curPlayer = player;
     setGameState([...gameState, { id: id, player: curPlayer }]);
