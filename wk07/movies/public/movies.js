@@ -1,3 +1,6 @@
+/*** 9 Converting Web Components To React Components
+ * Ref: https://student.emeritus.org/courses/2663/assignments/108763?module_item_id=589782
+ */
 import React from 'react'
 
 // Step 1 - Convert this to a React Component
