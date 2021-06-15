@@ -1,8 +1,4 @@
-//import React from 'react';
-//import ReactDOM from 'react-dom';
-
-
-// simulate getting products from DataBase
+// sumulate getting products from DataBase
 const products = [
   { name: "Apples_:", country: "Italy", cost: 3, instock: 10 },
   { name: "Oranges:", country: "Spain", cost: 4, instock: 3 },
@@ -169,8 +165,14 @@ const Products = (props) => {
     console.log(`total updated to ${newTotal}`);
     return newTotal;
   };
-  // TODO: implement the restockProducts function
-  const restockProducts = (url) => {};
+  const restockProducts = (url) => {
+    doFetch(url);
+    let newItems = data.map((item) => {
+      let { name, country, cost, instock } = item;
+      return { name, country, cost, instock };
+    });
+    setItems([...items, ...newItems]);
+  };
 
   return (
     <Container>
