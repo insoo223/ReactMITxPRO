@@ -145,7 +145,7 @@ const Products = (props) => {
       <Card key={index}>
         <Card.Header>
           <Accordion.Button as={Button} variant="link" eventKey={1 + index}>
-            {item?.name}
+            {item.name}
           </Accordion.Button>
           <Card.Body>
             $ {item.cost} from {item.country}
