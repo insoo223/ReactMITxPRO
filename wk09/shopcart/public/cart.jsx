@@ -147,10 +147,10 @@ const Products = (props) => {
           <Accordion.Button as={Button} variant="link" eventKey={1 + index}>
             {item.name}
           </Accordion.Button>
-          <Card.Body>
+        </Card.Header>
+        <Card.Body>
             $ {item.cost} from {item.country}
           </Card.Body>
-        </Card.Header>
         <Card.Footer>
           <Button 
           onClick={() => deleteCartItem(index)}
