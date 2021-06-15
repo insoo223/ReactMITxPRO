@@ -1,3 +1,5 @@
+
+
 // sumulate getting products from DataBase
 const products = [
   { name: "Apples_:", country: "Italy", cost: 3, instock: 10 },
@@ -88,6 +90,9 @@ const Products = (props) => {
     Image,
     Input,
   } = ReactBootstrap;
+  console.log('accordion >>>', Accordion);
+  console.log('toggle >>>', Accordion.Toggle);
+  console.log('card >>>>', Card);
   //  Fetch Data
   const { Fragment, useState, useEffect, useReducer } = React;
   const [query, setQuery] = useState("http://localhost:1337/products");
@@ -105,6 +110,7 @@ const Products = (props) => {
     if (item[0].instock == 0) return;
     item[0].instock = item[0].instock - 1;
     console.log(`add to Cart ${JSON.stringify(item)}`);
+    console.log(cart, item)
     setCart([...cart, ...item]);
   };
   const deleteCartItem = (delIndex) => {
@@ -138,18 +144,19 @@ const Products = (props) => {
     return (
       <Card key={index}>
         <Card.Header>
-          <Accordion.Toggle as={Button} variant="link" eventKey={1 + index}>
-            {item.name}
-          </Accordion.Toggle>
-        </Card.Header>
-        <Accordion.Collapse
-          onClick={() => deleteCartItem(index)}
-          eventKey={1 + index}
-        >
+          <Accordion.Button as={Button} variant="link" eventKey={1 + index}>
+            {item?.name}
+          </Accordion.Button>
           <Card.Body>
             $ {item.cost} from {item.country}
           </Card.Body>
-        </Accordion.Collapse>
+        </Card.Header>
+        <Card.Footer>
+          <Button 
+          onClick={() => deleteCartItem(index)}
+          eventKey={1 + index}
+          >delete</Button>
+        </Card.Footer>
       </Card>
     );
   });
