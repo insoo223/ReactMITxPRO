@@ -8,11 +8,25 @@ function CreateAccount(){
 
   function validate(field, label){
       if (!field) {
-        setStatus('Error: ' + label);
-        setTimeout(() => setStatus(''),3000);
-        return false;
+        if (String(label) === 'password') {
+        }
+        else {
+          setStatus('Error: ' + label);
+          setTimeout(() => setStatus(''),3000);
+          return false;
+        }
       }
-      return true;
+      
+      if (String(label) === 'password') {
+        console.log("pw field: " + String(field));
+        if (field.toString().length < 8) {
+          setStatus('Error: PW should be same or greater than 8 character long');
+          setTimeout(() => setStatus(''),3000);
+          setPassword('');
+          return false;
+        }
+      }
+    return true;
   }
 
   function handleCreate(){
@@ -45,13 +59,13 @@ function CreateAccount(){
               <input type="input" className="form-control" id="email" placeholder="Enter email" value={email} data-toggle="tooltip" data-placement="top" title="Qualified email address, please." onChange={e => setEmail(e.currentTarget.value)}/><br/>
               Password<br/>
 
-              <input type="password" className="form-control" id="password" placeholder="Enter password" value={password} data-toggle="tooltip" data-placement="top" title="Four digit number only password, please." onChange={e => setPassword(e.currentTarget.value)}/><br/>
+              <input type="password" className="form-control" id="password" placeholder="Enter password" value={password} data-toggle="tooltip" data-placement="top" title="More than or equal to 8 characters long only." onChange={e => setPassword(e.currentTarget.value)}/><br/>
 
               <button type="submit" className="btn btn-light" data-toggle="tooltip" data-placement="top" title="Before submitting, check again your information, please." onClick={handleCreate}>Create Account</button>
               </>
             ):(
               <>
-              <h5>Success</h5>
+              <h5>New Bank Account has been Successfully Created!</h5>
               <button type="submit" className="btn btn-light" onClick={clearForm}>Add another account</button>
               </>
             )}
