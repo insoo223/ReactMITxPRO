@@ -39,12 +39,15 @@ function CreateAccount(){
       body={show ? (  
               <>
               Name<br/>
-              <input type="input" className="form-control" id="name" placeholder="Enter name" value={name} onChange={e => setName(e.currentTarget.value)} /><br/>
+              <input type="input" className="form-control" id="name" placeholder="Enter name" value={name} data-toggle="tooltip" data-placement="top" title="Given and Family Name in order, please." onChange={e => setName(e.currentTarget.value)} /><br/>
               Email address<br/>
-              <input type="input" className="form-control" id="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.currentTarget.value)}/><br/>
+
+              <input type="input" className="form-control" id="email" placeholder="Enter email" value={email} data-toggle="tooltip" data-placement="top" title="Qualified email address, please." onChange={e => setEmail(e.currentTarget.value)}/><br/>
               Password<br/>
-              <input type="password" className="form-control" id="password" placeholder="Enter password" value={password} onChange={e => setPassword(e.currentTarget.value)}/><br/>
-              <button type="submit" className="btn btn-light" onClick={handleCreate}>Create Account</button>
+
+              <input type="password" className="form-control" id="password" placeholder="Enter password" value={password} data-toggle="tooltip" data-placement="top" title="Four digit number only password, please." onChange={e => setPassword(e.currentTarget.value)}/><br/>
+
+              <button type="submit" className="btn btn-light" data-toggle="tooltip" data-placement="top" title="Before submitting, check again your information, please." onClick={handleCreate}>Create Account</button>
               </>
             ):(
               <>
