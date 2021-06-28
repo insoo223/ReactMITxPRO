@@ -12,7 +12,8 @@ function CreateAccount(){
         }
         else {
           setStatus('Error: ' + label);
-          setTimeout(() => setStatus(''),3000);
+          alert('Error: Please, enter non-blank ' + label);
+          setTimeout(() => setStatus(''),1000);
           return false;
         }
       }
@@ -21,7 +22,8 @@ function CreateAccount(){
         console.log("pw field: " + String(field));
         if (field.toString().length < 8) {
           setStatus('Error: PW should be same or greater than 8 character long');
-          setTimeout(() => setStatus(''),3000);
+          alert('Error: Please, enter same or greater than 8 character long ' + label);
+          setTimeout(() => setStatus(''),1000);
           setPassword('');
           return false;
         }
