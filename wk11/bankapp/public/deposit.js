@@ -12,11 +12,18 @@ function Deposit(){
   }//clearForm
 
   function validate(field){
-    if(!field){
+    if(Number(field)<0){
       setStatus('Error: deposit amount');
-      alert('Please, enter amount greater than 0 .');
+      alert('You\'ve entered negative number.\nPlease, enter amount greater than 0 .');
       setTimeout(() => setStatus(''),2000);
       return false;
+    }
+    else if (isNaN(field)) {
+      setStatus('Error: deposit number');
+      alert('You\'ve entered character(s).\nPlease, enter number greater than 0 .');
+      setTimeout(() => setStatus(''),2000);
+      return false;
+
     }
     return true;
   }//validate
@@ -43,7 +50,7 @@ function Deposit(){
           <h3>Current balance: {sum} </h3>
 
           Amount<br/>
-          <input type="input" className="form-control" id="amount" placeholder="$" value={deposit} data-toggle="tooltip" data-placement="top" title="Enter your deposit amount, please." onChange={e => {setDeposit(e.currentTarget.value)}} 
+          <input type="input" className="form-control" id="amount" placeholder="$" data-toggle="tooltip" data-placement="top" title="Enter your deposit amount, please." onChange={e => {setDeposit(e.currentTarget.value)}} 
           /><br/>
 
           <button id="deposit" type="submit" className="btn btn-light" data-toggle="tooltip" data-placement="top" title="Before deposting, check again your deposit amount, please." onClick={handleDeposit}>Confirm Deposit</button>        
