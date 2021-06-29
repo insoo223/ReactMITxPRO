@@ -74,7 +74,7 @@ function CreateAccount(){
 
               <input type="password" className="form-control" id="password" placeholder="Enter password" value={password} data-toggle="tooltip" data-placement="top" title="More than or equal to 8 characters long only." onChange={e => setPassword(e.currentTarget.value)}/><br/>
 
-              <button id="submit" type="submit" disabled className="btn btn-light" data-toggle="tooltip" data-placement="top" title="Before submitting, check again your information, please." onClick={handleCreate}>Create Account</button>
+              <button id="submit" type="submit" disabled={!name && !email && !password} className="btn btn-light" data-toggle="tooltip" data-placement="top" title="Before submitting, check again your information, please." onClick={handleCreate}>Create Account</button>
               </>
             ):(
               <>

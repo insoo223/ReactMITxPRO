@@ -3,7 +3,7 @@ function AllData(){
   return (
     <>
     <h5>All Data in Store</h5>
-    {JSON.stringify(ctx)}<br/>
+    {JSON.stringify(ctx.users.map((v) => v.name)?.[0])}<br/>
     </>
   );
 }
