@@ -51,35 +51,43 @@ function CreateAccount(){
     setShow(false);
   }//handleCreate    
 
+  function showSuccessMsg(){
+    alert('Successfully Created Account');    
+  }
+
   function clearForm(){
     setName('');
     setEmail('');
     setPassword('');
+    alert("Successfully Created Account");
     setShow(true);
   }//clearForm
 
   return (
     <Card
       bgcolor="primary"
-      header="Create Account"
+      header="CREATE ACCOUNT"
       status={status}
       body={show ? (  
               <>
-              Name<br/>
-              <input type="input" className="form-control" id="name" placeholder="Enter name" value={name} data-toggle="tooltip" data-placement="top" title="Given and Family Name in order, please." onChange={e => {setName(e.currentTarget.value); enableSubmitbutton(e.currentTarget.value)}} /><br/>
-              Email address<br/>
 
-              <input type="input" className="form-control" id="email" placeholder="Enter email" value={email} data-toggle="tooltip" data-placement="top" title="Qualified email address, please." onChange={e => setEmail(e.currentTarget.value)}/><br/>
-              Password<br/>
+              <input type="input" className="form-control" id="name" placeholder="NAME" value={name} data-toggle="tooltip" data-placement="top" title="Given and Family Name in order, please." onChange={e => {setName(e.currentTarget.value); enableSubmitbutton(e.currentTarget.value)}} /><br/>
 
-              <input type="password" className="form-control" id="password" placeholder="Enter password" value={password} data-toggle="tooltip" data-placement="top" title="More than or equal to 8 characters long only." onChange={e => setPassword(e.currentTarget.value)}/><br/>
+              <input type="input" className="form-control" id="email" placeholder="EMAIL" value={email} data-toggle="tooltip" data-placement="top" title="Qualified email address, please." onChange={e => setEmail(e.currentTarget.value)}/><br/>
 
-              <button id="submit" type="submit" disabled={!name && !email && !password} className="btn btn-light" data-toggle="tooltip" data-placement="top" title="Before submitting, check again your information, please." onClick={handleCreate}>Create Account</button>
+              <input type="password" className="form-control" id="password" placeholder="PASSWORD" value={password} data-toggle="tooltip" data-placement="top" title="More than or equal to 8 characters long only." onChange={e => setPassword(e.currentTarget.value)}/><br/>
+              <div class="col-md-12 text-center">
+                <button id="submit" type="submit" disabled={!name && !email && !password} className="btn btn-light" data-toggle="tooltip" data-placement="top" title="Before submitting, check again your information, please." onClick={handleCreate}>
+                <span>CREATE</span><br/>
+                <span>ACCOUNT</span></button>
+              </div>
               </>
             ):(
               <>
-              <h5>New Bank Account has been Successfully Created!</h5>
-              <button type="submit" className="btn btn-light" onClick={clearForm}>Add another account</button>
+                <h5>New Bank Account has been Successfully Created!</h5>
+                <button type="submit" className="btn btn-light" onClick={clearForm}>
+                <span>Add Another</span><br/>
+                <span>Account</span></button>
               </>
             )}
     />

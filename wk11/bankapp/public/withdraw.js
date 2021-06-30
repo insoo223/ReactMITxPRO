@@ -44,21 +44,22 @@ function Withdraw(){
   return (
     <Card
       bgcolor="danger"
-      header="Withdraw"
+      header="WITHDRAW"
       status={status}
       body={show ? (
         <>
-          <h3>Current balance: {ctx.users[0].balance} </h3>
+          <h3>Balance {ctx.users[0].balance.toFixed(2)} </h3>
 
-          Amount<br/>
-          <input type="input" className="form-control" id="amount" placeholder="$" data-toggle="tooltip" data-placement="top" title="Enter your withdraw amount, please." onChange={e => {setWithdraw(e.currentTarget.value)}} 
+          Withdraw Amount<br/>
+          <input type="input" className="form-control" id="amount" placeholder="" data-toggle="tooltip" data-placement="top" title="Enter your withdraw amount, please." onChange={e => {setWithdraw(e.currentTarget.value)}} 
           /><br/>
-
-          <button id="withdraw" disabled={!withdraw} type="submit" className="btn btn-light" data-toggle="tooltip" data-placement="top" title="Before withdraw cash, check again your withdraw amount, please." onClick={handleWithdraw}>Confirm Withdraw</button>        
+          <div class="col-md-12 text-center">
+            <button id="withdraw" disabled={!withdraw} type="submit" className="btn btn-light" data-toggle="tooltip" data-placement="top" title="Before withdraw cash, check again your withdraw amount, please." onClick={handleWithdraw}>Withdraw</button>        
+          </div>
         </>
       ):(
         <>
-          <h3>Current balance: {ctx.users[0].balance}</h3>
+          <h3>Balance: {ctx.users[0].balance}</h3>
           <h5>Your withdraw has been successfully processed!</h5>
           <button type="submit" className="btn btn-light" onClick={clearForm}>Add another withdraw</button>
         </>

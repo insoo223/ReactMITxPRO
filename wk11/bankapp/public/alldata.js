@@ -1,21 +1,44 @@
 function AllData(){
   const ctx = React.useContext(UserContext);
-  let name, email, password, balance, data;
-  let allName;
-  //ctx.users.slice(0);
-  //name = ctx.users[0].name;
-  allName = JSON.stringify(ctx.users[0].name);
+  let name, email, password, balance, numEle, avar;
+  let allName='', allEmail ='', allPassword = '', allBalance = ''; 
+  numEle = JSON.stringify(ctx.users.length);
+  for (let i=0; i<numEle; i++)
+  {
+    allName = allName + "," + JSON.stringify(ctx.users[i].name);
+    allEmail = allEmail + "," + JSON.stringify(ctx.users[i].email);
+    allPassword = allPassword + "," + JSON.stringify(ctx.users[i].password);
+    allBalance = allBalance + "," + JSON.stringify(ctx.users[i].balance);
+  }
   name = allName;
-  email = ctx.users[0].email;
-  password = ctx.users[0].password;
-  balance = ctx.users[0].balance;
-  //data = {email, balance};
+  email = allEmail;
+  password = allPassword;
+  balance = allBalance;
+  
   return (
-    <Card
-      txtcolor="black"
-      header={"Name: "+name}
-      title="Email, Password, Balance" 
-      body = {email+", "+password+", "+balance} 
-    />
+    <>
+      <div class="container bg-warning ">
+        <div class="row">
+          <div class="col-sm">
+            <h3>Name</h3><br/>
+            {name.split(",")[1]}<br/>
+            {name.split(",")[2]}<br/>
+            {name.split(",")[3]}<br/>
+          </div>
+          <div class="col-sm">
+            <h3>Email</h3><br/>
+            {email.split(",")[1]}<br/>
+            {email.split(",")[2]}<br/>
+            {email.split(",")[3]}<br/>
+          </div>
+          <div class="col-sm">
+            <h3>Password</h3><br/>
+            {password.split(",")[1]}<br/>
+            {password.split(",")[2]}<br/>
+            {password.split(",")[3]}<br/>
+          </div>
+        </div>
+      </div>    
+    </>
   );
 }

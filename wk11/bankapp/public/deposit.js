@@ -15,14 +15,15 @@ function Deposit(){
       setStatus('Error: deposit amount');
       alert('You\'ve entered negative number.\nPlease, enter amount greater than 0 .');
       setTimeout(() => setStatus(''),2000);
+      setDeposit(0);
       return false;
     }
     else if (isNaN(field)) {
       setStatus('Error: deposit number');
       alert('You\'ve entered character(s).\nPlease, enter number greater than 0 .');
       setTimeout(() => setStatus(''),2000);
+      setDeposit(0);
       return false;
-
     }
     return true;
   }//validate
@@ -44,21 +45,22 @@ function Deposit(){
   return (
     <Card
       bgcolor="success"
-      header="Deposit"
+      header="DEPOSIT"
       status={status}
       body={show ? (
         <>
-          <h3>Current balance: {ctx.users[0].balance} </h3>
+          <h3>BALANCE: {ctx.users[0].balance.toFixed(2)} </h3>
 
-          Amount<br/>
-          <input type="input" className="form-control" id="amount" placeholder="$" data-toggle="tooltip" data-placement="top" title="Enter your deposit amount, please." onChange={e => {setDeposit(e.currentTarget.value)}} 
+          DEPOSIT AMOUNT<br/>
+          <input type="input" className="form-control" id="amount" placeholder="" data-toggle="tooltip" data-placement="top" title="Enter your deposit amount, please." onChange={e => {setDeposit(e.currentTarget.value)}} 
           /><br/>
-
-          <button id="deposit" type="submit" disabled={!deposit} className="btn btn-light" data-toggle="tooltip" data-placement="top" title="Before deposting, check again your deposit amount, please." onClick={handleDeposit}>Confirm Deposit</button>        
+          <div class="col-md-12 text-center">
+            <button id="deposit" type="submit" disabled={!deposit} className="btn btn-light" data-toggle="tooltip" data-placement="top" title="Before deposting, check again your deposit amount, please." onClick={handleDeposit}>DEPOSIT</button>   
+          </div>     
         </>
       ):(
         <>
-          <h3>Current balance: {ctx.users[0].balance}</h3>
+          <h3>BALANCE:{ctx.users[0].balance.toFixed(2)} </h3>
           <h5>Your deposit has been successfully processed!</h5>
           <button type="submit" className="btn btn-light" onClick={clearForm}>Add another deposit</button>
         </>
