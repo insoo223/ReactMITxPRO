@@ -11,9 +11,13 @@ function Withdraw(){
   }//clearForm
 
   function validate(field){
-    if(Number(field)<=0){
-      setStatus('Error: withdraw amount');
-      alert('You\'ve entered negative number.\nPlease, enter amount greater than 0 .');
+    let curBal;
+    let afterWithdraw;
+    curBal = Number(ctx.users[0].balance);
+    afterWithdraw = curBal - Number(field);
+    if(afterWithdraw<0){
+      setStatus('Error: overdraft');
+      alert(`You\'re trying to overdraft.\nPlease, enter amount equal or less than ${curBal}.`);
       setTimeout(() => setStatus(''),2000);
       return false;
     }
@@ -22,7 +26,6 @@ function Withdraw(){
       alert('You\'ve entered character(s).\nPlease, enter number greater than 0 .');
       setTimeout(() => setStatus(''),2000);
       return false;
-
     }
     return true;
   }//validate
@@ -51,11 +54,11 @@ function Withdraw(){
           <input type="input" className="form-control" id="amount" placeholder="$" data-toggle="tooltip" data-placement="top" title="Enter your withdraw amount, please." onChange={e => {setWithdraw(e.currentTarget.value)}} 
           /><br/>
 
-          <button id="withdraw" type="submit" className="btn btn-light" data-toggle="tooltip" data-placement="top" title="Before withdraw cash, check again your withdraw amount, please." onClick={handleWithdraw}>Confirm Withdraw</button>        
+          <button id="withdraw" disabled={!withdraw} type="submit" className="btn btn-light" data-toggle="tooltip" data-placement="top" title="Before withdraw cash, check again your withdraw amount, please." onClick={handleWithdraw}>Confirm Withdraw</button>        
         </>
       ):(
         <>
-          <h3>Total withdraw: {ctx.users[0].balance}</h3>
+          <h3>Current balance: {ctx.users[0].balance}</h3>
           <h5>Your withdraw has been successfully processed!</h5>
           <button type="submit" className="btn btn-light" onClick={clearForm}>Add another withdraw</button>
         </>

@@ -58,7 +58,7 @@ function Deposit(){
         </>
       ):(
         <>
-          <h3>Total deposit: {ctx.users[0].balance}</h3>
+          <h3>Current balance: {ctx.users[0].balance}</h3>
           <h5>Your deposit has been successfully processed!</h5>
           <button type="submit" className="btn btn-light" onClick={clearForm}>Add another deposit</button>
         </>
