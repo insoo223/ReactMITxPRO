@@ -12,3 +12,7 @@ https://www.youtube.com/watch?v=znZe9brgeeU
 # AWS web for public access
 You could access to AWS S3 static web site which run this code.
 http://insoo-kimbankingapplication.s3-website.us-east-2.amazonaws.com
+
+# Contact
+If you have any question, suggestion or empathy, feel free to email me.
+insoo@timmanage.com 
