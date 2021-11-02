@@ -1,10 +1,11 @@
-import {demoDestruncture} from "./destruct"
+import {objDestruct, arrDestruct} from "./destruct"
 
 function App() {
   return (
     <div>
-      <h2>Hi, Let's Learn React by Insoo!</h2>
-      {demoDestruncture()}
+      <h1>Let's Learn React w/Insoo!</h1>
+      <h2>Destructure-Merge objects:</h2>{objDestruct()}
+      <h2>Destructure-Merge arrays:</h2>{arrDestruct()}
     </div>
   );
 }
