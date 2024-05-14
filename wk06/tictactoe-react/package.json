@@ -4,13 +4,13 @@
     "private": true,
     "homepage": "https://itsrave.github.io/tictactoe-react/",
     "dependencies": {
-        "@fortawesome/fontawesome-svg-core": "^1.2.25",
-        "@fortawesome/free-solid-svg-icons": "^5.11.2",
-        "@fortawesome/react-fontawesome": "^0.1.7",
-        "react": "^16.12.0",
-        "react-dom": "^16.12.0",
-        "react-scripts": "3.2.0",
-        "react-tooltip": "^3.11.1"
+        "@fortawesome/fontawesome-svg-core": "^6.5.2",
+        "@fortawesome/free-solid-svg-icons": "^6.5.2",
+        "@fortawesome/react-fontawesome": "^0.2.0",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "react-scripts": "^5.0.1",
+        "react-tooltip": "^5.26.4"
     },
     "scripts": {
         "start": "react-scripts start",
