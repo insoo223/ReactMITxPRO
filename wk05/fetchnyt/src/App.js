@@ -3,15 +3,22 @@ import axios from 'axios';
 
 
 const App = () => {
+    // const keywds='The Tragedy of War in the Twentieth Century'
+    const keywds='Mary Beard'
     const [loading, setLoading] = useState(false);
     const [articles, setArticles] = useState([]);
-    const [query, setQuery] = useState('Arts');
+    const [query, setQuery] = useState(keywds);
 
     useEffect(() => {
         const getArticles = async () => {
             setLoading(true);
             
-            const aSite = `https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=section_name:("${query}")&sort=newest&api-key=${process.env.REACT_APP_NYTIMES_API_KEY}`;
+            //const aSite = `https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=section_name:("${query}")&sort=newest&api-key=${process.env.REACT_APP_NYTIMES_API_KEY}`;
+            
+            const aSite = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q="${query}"&sort=newest&api-key=${process.env.REACT_APP_NYTIMES_API_KEY}`;
+            
+            // const aSite = `https://api.nytimes.com/svc/books/v3/reviews.json?author=Stephen+King&api-key=${process.env.REACT_APP_NYTIMES_API_KEY}`;
+            
 
             const res = await axios (aSite);
             
@@ -23,6 +30,7 @@ const App = () => {
             ***/
             
             setArticles(res.data.response.docs);
+            // setArticles(res.data.response.lists.list_name);
 
             setLoading(false);
         };
