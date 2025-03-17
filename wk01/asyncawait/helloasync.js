@@ -13,19 +13,28 @@ resolved <-- (this will be printed out after two seconds)
 
 */
 
-function resolveAfter2sec() {
+function resolveAfter2sec1() {
 	return new Promise (resolve => {
 		setTimeout ( () => {
-			resolve('resolved');
+			resolve('resolved1');
 		}, 2000);
 	});
 }
 
+function resolveAfter2sec2() {
+	return new Promise (resolve => {
+		setTimeout ( () => {
+			resolve('resolved2');
+		}, 2000);
+	});
+}
 
 async function asyncCall() {
 	console.log('calling...');
-	const result = await resolveAfter2sec();
-	console.log(result);
+	const result1 = await resolveAfter2sec1();
+	const result2 = await resolveAfter2sec2();
+	console.log(result1);
+	console.log(result2);
 }
 
 function lulurara()
