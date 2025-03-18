@@ -32,6 +32,11 @@ const alphaFreq = Object.keys(wdFreq).sort().reduce((acc, key) => {
     acc[key] = wdFreq[key];
     return (acc);
     }, {});
+const cntFreq = Object.entries(wdFreq).sort(([,A], [,B]) => B - A).reduce((acc,[k,v]) => {
+    acc[k] = v;
+    return (acc);
+    }, {});
 console.log(wdFreq);
 console.log(alphaFreq);
+console.log(cntFreq);
 
