@@ -1,4 +1,4 @@
-/*
+/*----------------------------------------
 1. File: helloasync.js
 2. 2. How to Run: $node helloasync.js
 3. Exprected Result: 
@@ -15,8 +15,7 @@ resolved1 <-- (these two results will be simultaneously printed out after two se
 resolved2
 
 4. PN 1033151 (p44) of the printed binding of "MIT xPRO Front-End Dev. w/React"
-
-*/
+----------------------------------------*/
 
 function resolveAfter2sec1() {
 	return new Promise (resolve => {
